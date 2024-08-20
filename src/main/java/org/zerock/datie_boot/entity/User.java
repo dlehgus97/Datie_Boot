@@ -2,7 +2,6 @@ package org.zerock.datie_boot.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -10,7 +9,6 @@ import java.util.List;
 @Data
 @Table(name = "USER")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userno;
@@ -30,7 +28,14 @@ public class User {
     private String profileReal;
     private String profileOrg;
     private int status;
-    private Timestamp moddate;
+  
+    @Column(columnDefinition = "TIMESTAMP")
+    private LocalDateTime moddate; //수정날짜
 
-    // Getters and setters
+    public User() {
+        this.age = 0;
+        this.accountno = 0;
+        this.cardno = 0;
+        this.status = 0;
+    }
 }
