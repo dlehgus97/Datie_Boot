@@ -5,10 +5,7 @@ import com.google.zxing.WriterException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -23,10 +20,17 @@ public class QrController {
     }
 
     @GetMapping("/qr")
-    public Object cerateQR(@RequestParam String url) throws WriterException, IOException {
-        Object Qr = qrServiceImple.createQR(url);
+    public Object createQR(
+            @RequestParam String url,
+            @RequestParam String amount) throws WriterException, IOException {
+
+        // 선택된 URL에 추가적인 정보(파라미터)를 포함하여 최종 URL 생성
+        String fullUrl = url + "&amount=" + amount;
+        Object Qr = qrServiceImple.createQR(fullUrl);
+
         return ResponseEntity.ok()
                 .contentType(MediaType.IMAGE_PNG)
                 .body(Qr);
     }
+
 }

@@ -14,18 +14,17 @@ import java.io.IOException;
 public class QrServiceImple implements QrService {
 
     @Override
-    public Object createQR(String url) throws WriterException, IOException {
-        //qr 크기 설정
+    public byte[] createQR(String url) throws WriterException, IOException {
+        // QR 코드 크기 설정
         int width = 500;
         int height = 500;
 
-        // QR Code - BitMatrix: qr code 정보 생성
-        BitMatrix bitMatrix = new MultiFormatWriter().encode(url, BarcodeFormat.QR_CODE,width,height);
+        // QR Code - BitMatrix: QR 코드 정보 생성
+        BitMatrix bitMatrix = new MultiFormatWriter().encode(url, BarcodeFormat.QR_CODE, width, height);
 
-        try(ByteArrayOutputStream out = new ByteArrayOutputStream();){
-            MatrixToImageWriter.writeToStream(bitMatrix,"PNG",out);
+        try (ByteArrayOutputStream out = new ByteArrayOutputStream()) {
+            MatrixToImageWriter.writeToStream(bitMatrix, "PNG", out);
             return out.toByteArray();
         }
-
     }
 }
