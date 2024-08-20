@@ -3,36 +3,31 @@ package org.zerock.datie_boot.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 @Entity
 @Data
-@Table(name="card")
+@Table(name = "CARD")
 public class Card {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int cardno;//카드번호
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int cardno;
 
-    private int cardpw;//카드비밇번호
+    private int cardpw;
+    private int userno;
+    private int userno2;
+    private int cStatus;
+    private Timestamp cModdate;
+    private int cardtypeno;
+    private int cvc;
+    private Timestamp date;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userno")
-    private User userno; // 사용자 1
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userno2")
-    private User userno2; // 사용자 2
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userno", insertable = false, updatable = false)
+    private User user;
 
-    private int c_status;//상태번호
-    private int cvc;//cvc
-
-    @Column(columnDefinition = "TIMESTAMP")
-    private LocalDateTime c_moddate; //수정날짜
-
-    @Column(columnDefinition = "TIMESTAMP")
-    private LocalDateTime date; //유효기간
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cardtypeno")
-    private Card card; // 카드 정보
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cardtypeno", insertable = false, updatable = false)
+    private CardType cardType;
 }
