@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer userno;
+    private int userno;
 
     private String id;
     private String pw;
@@ -30,11 +30,4 @@ public class User {
   
     @Column(columnDefinition = "TIMESTAMP")
     private LocalDateTime moddate; //수정날짜
-
-    public User() {
-        this.age = 0;
-        this.acountno = 0;
-        this.cardno = 0;
-        this.status = 0;
-    }
 }
