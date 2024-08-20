@@ -5,12 +5,16 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name="company")
+@Table(name = "COMPANY")
 public class Company {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int companyno; // 업체번호
-    private String companyname; // 업체명
+    private int companyno;
+
+    private String companyname;
     private String type;
     private String companyaddress;
+
+    // Getters and setters
 }
