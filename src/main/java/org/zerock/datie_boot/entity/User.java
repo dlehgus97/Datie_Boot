@@ -2,13 +2,11 @@ package org.zerock.datie_boot.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Data
-@Table(name = "USER")
+@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

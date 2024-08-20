@@ -15,9 +15,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable()) // CSRF 비활성화
                 .authorizeRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "/api/login").permitAll() // 로그인 POST 요청 허용
-                        .requestMatchers(HttpMethod.POST, "/api/signup").permitAll() // 회원가입 POST 요청 허용
-                        .anyRequest().authenticated() // 다른 요청은 인증 필요
+                        .requestMatchers(HttpMethod.POST, "/login").permitAll() // 로그인 POST 요청 허용
+                        .requestMatchers(HttpMethod.POST, "/signup").permitAll() // 회원가입 POST 요청 허용
+                        .requestMatchers(HttpMethod.GET, "/api/company").permitAll() // API 요청 허용
+                        .requestMatchers("/**").authenticated() // 모든 다른 요청은 인증 필요
                 );
         return http.build();
     }
