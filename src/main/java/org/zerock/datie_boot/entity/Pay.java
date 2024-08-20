@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class Pay {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int payno; //결제번호
 
     private int companyno; //업체번호

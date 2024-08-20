@@ -14,10 +14,9 @@ import java.time.LocalDateTime;
 public class User
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long num;     //고객번호
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int userno;     //고객번호
 
-//    private Long userno;
 
     private String id;     //아이디
     private String pw;     //비밀번호
