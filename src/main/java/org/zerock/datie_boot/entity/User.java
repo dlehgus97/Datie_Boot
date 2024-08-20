@@ -1,15 +1,23 @@
 package org.zerock.datie_boot.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "user")
+@Getter
+@Setter
+
 public class User
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int userno;     //고객번호
+    private Long num;     //고객번호
+
+//    private Long userno;
 
     private String id;     //아이디
     private String pw;     //비밀번호
@@ -31,4 +39,12 @@ public class User
 
     @Column(columnDefinition = "TIMESTAMP")
     private LocalDateTime moddate; //수정날짜
+
+    public User() {
+        this.age = 0;
+        this.accountno = 0;
+        this.cardno = 0;
+        this.status = 0;
+    }
+
 }
