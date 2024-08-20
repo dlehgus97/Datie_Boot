@@ -3,6 +3,7 @@ package org.zerock.datie_boot.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -20,7 +21,7 @@ public class User {
     private String hp;
     private String email;
     private String addr1;
-    private String addr;
+    private String addr2;
     private String sex;
     private int age;
     private int acountno;
@@ -34,7 +35,7 @@ public class User {
 
     public User() {
         this.age = 0;
-        this.accountno = 0;
+        this.acountno = 0;
         this.cardno = 0;
         this.status = 0;
     }
