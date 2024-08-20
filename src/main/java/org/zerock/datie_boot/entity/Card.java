@@ -19,9 +19,9 @@ public class Card {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userno")
     private User userno; // 사용자 1
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userno2")
-    private User userno2; // 사용자 2
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "userno2")
+//    private User userno2; // 사용자 2
 
     private int c_status;//상태번호
     private int cvc;//cvc

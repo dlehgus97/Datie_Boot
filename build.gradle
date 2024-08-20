@@ -37,6 +37,9 @@ dependencies {
 	//QR코드
 	implementation group: 'com.google.zxing', name: 'javase', version: '3.5.0'
 	implementation group: 'com.google.zxing', name: 'core', version: '3.5.0'
+
+	//security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 
 tasks.named('test') {
