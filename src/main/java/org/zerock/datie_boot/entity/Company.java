@@ -8,7 +8,7 @@ import lombok.Data;
 @Table(name="company")
 public class Company {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int companyno; // 업체번호
     private String companyname; // 업체명
     private String type;

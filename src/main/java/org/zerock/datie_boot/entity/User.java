@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public class User
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userno;     //고객번호
 
     private String id;     //아이디

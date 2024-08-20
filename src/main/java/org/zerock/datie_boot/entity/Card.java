@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public class Card {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cardno;//카드번호
 
     private int cardpw;//카드비밇번호
@@ -19,6 +19,7 @@ public class Card {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userno")
     private User userno; // 사용자 1
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userno2")
     private User userno2; // 사용자 2
