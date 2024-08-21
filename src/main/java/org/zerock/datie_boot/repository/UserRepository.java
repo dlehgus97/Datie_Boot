@@ -7,7 +7,7 @@ import org.zerock.datie_boot.entity.User;
 
 import java.util.Optional;
 
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT u FROM User u WHERE u.id = :id")
-    Optional<User> findByUserId(@Param("id") String id); // id를 가지고 db에서 회원 조회하기위한 메서드
+    Optional<User> findByUserId(@Param("id") String id); // 메소드 이름 변경
 }
