@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.ToString;
 
 @Entity
-@Table(name = "CARDTYPE")
+@Table(name = "cardtype")
 @ToString
 public class CardType {
 

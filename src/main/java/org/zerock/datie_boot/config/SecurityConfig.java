@@ -10,12 +10,16 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.zerock.datie_boot.jwt.JWTFilter;
 import org.zerock.datie_boot.jwt.JWTUtil; // JWTUtil import 추가
 import org.zerock.datie_boot.jwt.LoginFilter;
 import org.zerock.datie_boot.service.UserService;
+
+import org.springframework.web.cors.CorsConfiguration;
+
 
 @Configuration
 @EnableWebSecurity
@@ -44,6 +48,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
+
                 .authorizeRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/signup").permitAll()
@@ -55,8 +60,24 @@ public class SecurityConfig {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .addFilterBefore(new JWTFilter(jwtUtil, userService), UsernamePasswordAuthenticationFilter.class)
-                .addFilterAt(new LoginFilter(authenticationManager(), passwordEncoder(), jwtUtil), UsernamePasswordAuthenticationFilter.class);
+                .addFilterAt(new LoginFilter(authenticationManager(), passwordEncoder(), jwtUtil), UsernamePasswordAuthenticationFilter.class)
+
+
+                .cors(cors -> cors.configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues())) // CORS 설정 추가
+                .authorizeRequests(authorize -> authorize
+                        .requestMatchers(HttpMethod.POST, "/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/signup").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/company").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/cardpassword").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/qr.html").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/qr").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/api/check-login").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/payresult").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/profile").permitAll()
+                        .requestMatchers("/**").authenticated()
+                );
 
         return http.build();
     }
+
 }

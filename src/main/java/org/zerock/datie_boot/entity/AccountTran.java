@@ -7,14 +7,14 @@ import java.sql.Timestamp;
 
 @Entity
 @Data
-@Table(name = "ACCOUNTTRAN")
+@Table(name = "accounttran")
 public class AccountTran {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int accounttranId;
 
-    private int acountno;
+    private int accountno;
     private int amount;
     private String name;
     private Timestamp confirmdate;
