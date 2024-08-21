@@ -24,7 +24,7 @@ public class User {
     private String addr2;
     private String sex;
     private int age;
-    private int acountno;
+    private int accountno;
     private int cardno;
     private String profileReal;
     private String profileOrg;
@@ -33,10 +33,4 @@ public class User {
     @Column(columnDefinition = "TIMESTAMP")
     private LocalDateTime moddate; //수정날짜
 
-    public User() {
-        this.age = 0;
-        this.acountno = 0;
-        this.cardno = 0;
-        this.status = 0;
-    }
 }
