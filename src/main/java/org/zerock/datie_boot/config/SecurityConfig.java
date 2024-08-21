@@ -20,6 +20,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/company").permitAll()
                         .requestMatchers(HttpMethod.GET,"/qr.html").permitAll()
                         .requestMatchers(HttpMethod.GET,"/qr").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/admin/list").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/admin/list").permitAll()
                         .requestMatchers("/**").authenticated() // 모든 다른 요청은 인증 필요
                 );
         return http.build();
