@@ -20,9 +20,12 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/signup").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/company").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/profile").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/cardpassword").permitAll()
                         .requestMatchers(HttpMethod.GET,"/qr.html").permitAll()
                         .requestMatchers(HttpMethod.GET,"/qr").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/api/check-login").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/payresult").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/profile").permitAll()
                         .requestMatchers("/**").authenticated()
                 );
         return http.build();
