@@ -58,6 +58,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET,"/api/check-login").permitAll()
                         .requestMatchers(HttpMethod.POST,"/api/payresult").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/profile").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/admin/list").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/admin/list").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(auth -> auth.disable())
