@@ -22,7 +22,7 @@ public class User {
     private String addr2;
     private String sex;
     private int age;
-    private int acountno;
+    private int accountno;
     private int cardno;
     private String profileReal;
     private String profileOrg;

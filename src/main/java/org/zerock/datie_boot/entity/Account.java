@@ -16,7 +16,7 @@ public class Account {
 
     private int userno;
     private String bank;
-    private String acount;
+    private String account;
     private int balance;
     private int status;
 
