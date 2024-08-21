@@ -14,7 +14,7 @@ public class AccountTran {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int accounttranId;
 
-    private int acountno;
+    private int accountno;
     private int amount;
     private String name;
     private Timestamp confirmdate;
