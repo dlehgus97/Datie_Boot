@@ -3,10 +3,7 @@ package org.zerock.datie_boot.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.zerock.datie_boot.dto.SignUpRequest;
 import org.zerock.datie_boot.dto.UserAdminDTO;
-import org.zerock.datie_boot.entity.User;
-import org.zerock.datie_boot.repository.UserAdminRepository;
 import org.zerock.datie_boot.service.UserAdminService;
 
 import java.util.List;

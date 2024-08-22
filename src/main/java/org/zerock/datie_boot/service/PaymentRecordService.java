@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.zerock.datie_boot.entity.Account;
 import org.zerock.datie_boot.entity.Card;
-import org.zerock.datie_boot.entity.Diary;
 import org.zerock.datie_boot.entity.PaymentRecord;
 import org.zerock.datie_boot.gpt.GptRequest;
 import org.zerock.datie_boot.gpt.GptResponse;
@@ -49,8 +48,10 @@ public class PaymentRecordService {
         int peramount = paymentRecord.getPeramount();
         Card card = cardRepository.findByCardno(cardno);
 
+
         PR.setCardno(cardno);
         PR.setCompanyno(paymentRecord.getCompanyno());
+        PR.setContent(paymentRecord.getContent());
         PR.setAmount(paymentRecord.getAmount());
         PR.setPeramount(peramount);
         PR.setBonus(paymentRecord.getBonus());
