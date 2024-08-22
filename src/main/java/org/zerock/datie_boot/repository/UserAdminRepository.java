@@ -35,10 +35,20 @@ public interface UserAdminRepository extends JpaRepository<User, Integer> {
 
 
     @Query("SELECT u, c FROM User u LEFT JOIN Card c ON u.userno = c.userno "
-            + "WHERE u.status = :ms ")
+            + "WHERE u.status = CASE "
+            + "WHEN :ms = '탈퇴' THEN 0 "
+            + "WHEN :ms = '이용중' THEN 1 "
+            + "WHEN :ms = '관리자' THEN 2 "
+            + "END")
     List<Object[]> adminGetListByMs(String ms);
 
     @Query("SELECT u, c FROM User u LEFT JOIN Card c ON u.userno = c.userno "
-            + "WHERE c.cStatus = :cs ")
+            + "WHERE (c.cStatus = CASE "
+            + "WHEN :cs = '사용중' THEN 1 "
+            + "WHEN :cs = '정지' THEN 2 "
+            + "WHEN :cs = '해지' THEN 3 "
+            + "WHEN :cs = '정지신청' THEN 4 "
+            + "END) "
+            + "OR (:cs = '미사용' AND c.cStatus IS NULL)")
     List<Object[]> adminGetListByCs(String cs);
 }
