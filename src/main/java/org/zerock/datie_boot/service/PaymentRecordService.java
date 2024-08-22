@@ -95,7 +95,7 @@ public class PaymentRecordService {
                 }
 
                 category = gptResponse.getChoices().get(0).getMessage().getContent();
-
+                PR.setCategory(category);
                 PR.setPaystate(1);
                 paymentRecordRepository.save(PR);
                 return "결제 성공";
