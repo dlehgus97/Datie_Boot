@@ -22,4 +22,15 @@ public class ProfileController {
         }
         return ResponseEntity.ok(profileDTO);
     }
+
+    @PostMapping("/profile/{userno}")
+    public ResponseEntity<Void> updateUserProfile(@PathVariable int userno, @RequestBody ProfileDTO profileDTO) {
+        System.out.println("profile");
+        try {
+            profileService.updateUserProfile(userno, profileDTO);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(500).build();
+        }
+    }
 }

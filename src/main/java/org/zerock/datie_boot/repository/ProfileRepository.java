@@ -8,10 +8,11 @@ import org.zerock.datie_boot.entity.User;
 
 import java.util.Optional;
 
-public interface ProfileRepository extends JpaRepository<User, Long> {
+public interface ProfileRepository extends JpaRepository<User, Integer> {
 
-    @Query("SELECT new org.zerock.datie_boot.dto.ProfileDTO(u, a.bank, a.account) " +
-            "FROM User u LEFT JOIN Account a ON u.accountno = a.accountno " +
+    @Query("SELECT new org.zerock.datie_boot.dto.ProfileDTO(u.userno, u.name, u.pw, u.email, u.addr1, u.addr2, u.sex,u.age, u.accountno, a.bank, a.account, u.moddate) " +
+            "FROM User u LEFT JOIN Account a ON u.userno = a.userno " +
             "WHERE u.userno = :userno")
     Optional<ProfileDTO> findUserWithAccountByUserno(@Param("userno") int userno);
+
 }
