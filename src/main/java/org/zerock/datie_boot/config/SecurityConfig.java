@@ -66,9 +66,12 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/diary/detail").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/diary/confirmdate").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/profile").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/profile/**").permitAll() // 인증된 사용자만 접근 가능
+                        .requestMatchers(HttpMethod.POST, "/api/profile/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/cancelcard/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/lostcard/**").permitAll()
                         .anyRequest().authenticated()
                 )
+
                 .formLogin(auth -> auth.disable())
                 .httpBasic(auth -> auth.disable())
                 .sessionManagement(session -> session
