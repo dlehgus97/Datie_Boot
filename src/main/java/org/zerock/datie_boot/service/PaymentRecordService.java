@@ -8,7 +8,6 @@ import org.zerock.datie_boot.entity.Diary;
 import org.zerock.datie_boot.entity.PaymentRecord;
 import org.zerock.datie_boot.repository.AccountRepository;
 import org.zerock.datie_boot.repository.CardRepository;
-import org.zerock.datie_boot.repository.DiaryRepository;
 import org.zerock.datie_boot.repository.PaymentRecordRepository;
 
 import java.sql.Timestamp;
@@ -26,9 +25,6 @@ public class PaymentRecordService {
     @Autowired
     private AccountRepository accountRepository;
 
-    @Autowired
-    private DiaryRepository diaryRepository;
-
     public PaymentRecord showInfo(PaymentRecord paymentrecord) {
         return paymentRecordRepository.save(paymentrecord);
     }
@@ -39,7 +35,7 @@ public class PaymentRecordService {
         int cardno = paymentRecord.getCardno();
         int peramount = paymentRecord.getPeramount();
         Card card = cardRepository.findByCardno(cardno);
-        Diary diary = new Diary();
+
         PR.setCardno(cardno);
         PR.setCompanyno(paymentRecord.getCompanyno());
         PR.setAmount(paymentRecord.getAmount());
@@ -69,9 +65,6 @@ public class PaymentRecordService {
                 accountRepository.save(account2);
                 PR.setPaystate(1);
                 paymentRecordRepository.save(PR);
-                int payno = PR.getPayno();
-                diary.setPayno(payno);
-                diaryRepository.save(diary);
                 return "결제 성공";
 
             } else {
@@ -89,3 +82,4 @@ public class PaymentRecordService {
 
     }
 }
+
