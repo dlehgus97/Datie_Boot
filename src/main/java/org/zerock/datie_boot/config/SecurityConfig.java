@@ -53,6 +53,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/signup").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/company").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/cardpassword").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/changepassword/**").permitAll()
                         .requestMatchers(HttpMethod.GET,"/qr.html").permitAll()
                         .requestMatchers(HttpMethod.GET,"/qr").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/check-login").permitAll()
@@ -64,6 +65,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/diary").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/diary/detail").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/diary/confirmdate").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/profile").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/profile/**").permitAll() // 인증된 사용자만 접근 가능
                         .anyRequest().authenticated()
                 )
                 .formLogin(auth -> auth.disable())
