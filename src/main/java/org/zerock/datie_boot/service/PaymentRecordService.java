@@ -10,6 +10,9 @@ import org.zerock.datie_boot.repository.AccountRepository;
 import org.zerock.datie_boot.repository.CardRepository;
 import org.zerock.datie_boot.repository.PaymentRecordRepository;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 @Service
 public class PaymentRecordService {
 
@@ -38,7 +41,7 @@ public class PaymentRecordService {
         PR.setAmount(paymentRecord.getAmount());
         PR.setPeramount(peramount);
         PR.setBonus(paymentRecord.getBonus());
-
+        PR.setConfirmdate(new Timestamp(new Date().getTime()));
         if (card != null) {
             int userno = card.getUserno();
             int userno2 = card.getUserno2();
