@@ -41,4 +41,39 @@ public class CardService {
         }
         return false;
     }
+    public boolean cancelCard(PasswordChangeRequestDTO passwordChangeRequestDTO) {
+        int userno = passwordChangeRequestDTO.getUserno();
+        Optional<Card> cardOptional = cardRepository.findByUserno(userno);
+
+        if (cardOptional.isPresent()) {
+            Card card = cardOptional.get();
+
+            // 비밀번호 확인
+            if (card.getCardpw() == Integer.parseInt(passwordChangeRequestDTO.getCurrentPassword())) {
+                card.setCStatus(3);
+                cardRepository.save(card); // 변경 사항 저장
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean lostCard(PasswordChangeRequestDTO passwordChangeRequestDTO) {
+        int userno = passwordChangeRequestDTO.getUserno();
+        Optional<Card> cardOptional = cardRepository.findByUserno(userno);
+
+        if (cardOptional.isPresent()) {
+            Card card = cardOptional.get();
+
+            // 비밀번호 확인
+            if (card.getCardpw() == Integer.parseInt(passwordChangeRequestDTO.getCurrentPassword())) {
+                card.setCStatus(4);
+                cardRepository.save(card); // 변경 사항 저장
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 }
