@@ -2,8 +2,17 @@
 
 ### ✔️Frond-end
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+
 ### ✔️Back-end
-<img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white"><img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white">
+	https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white
 
 ### ✔️Database
-<img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
+https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white
+https://img.shields.io/badge/Amazon_AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white
+
+### ✔️Group
+https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white
+https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white
+
+### ✔️Design
+https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white
