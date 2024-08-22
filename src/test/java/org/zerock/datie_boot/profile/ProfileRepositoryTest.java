@@ -1,4 +1,4 @@
-package org.zerock.datie_boot;
+package org.zerock.datie_boot.profile;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

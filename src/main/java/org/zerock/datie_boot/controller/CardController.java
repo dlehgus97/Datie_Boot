@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import org.zerock.datie_boot.entity.Card;
 import org.zerock.datie_boot.entity.User;
 import org.zerock.datie_boot.repository.CardRepository;
+import org.zerock.datie_boot.service.CardService;
+import org.zerock.datie_boot.dto.PasswordChangeRequestDTO;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +20,10 @@ public class CardController {
 
     @Autowired
     private CardRepository cardRepository;
+
+
+    @Autowired
+    private CardService cardService;
 
     @PostMapping("/cardpassword")
     public ResponseEntity<Map<String, Integer>> getCardPassword(@RequestBody User user) {
@@ -36,4 +42,23 @@ public class CardController {
         }
     }
 
+    @PostMapping("/changepassword/{userno}")
+    public ResponseEntity<String> changeCardPassword(
+            @PathVariable int userno,
+            @RequestBody PasswordChangeRequestDTO passwordChangeRequestDTO) {
+
+        // userno를 DTO에 설정
+        passwordChangeRequestDTO.setUserno(userno);
+
+        boolean isChanged = cardService.changeCardPassword(passwordChangeRequestDTO);
+
+
+        if (isChanged) {
+            System.out.println("Password change successful for userno: " + userno);
+            return ResponseEntity.ok("비밀번호가 성공적으로 변경되었습니다.");
+        } else {
+            System.out.println("Password change failed for userno: " + userno);
+            return ResponseEntity.badRequest().body("비밀번호 변경에 실패했습니다.");
+        }
+    }
 }
