@@ -35,8 +35,10 @@ public class PaymentRecordService {
         int peramount = paymentRecord.getPeramount();
         Card card = cardRepository.findByCardno(cardno);
 
+
         PR.setCardno(cardno);
         PR.setCompanyno(paymentRecord.getCompanyno());
+        PR.setContent(paymentRecord.getContent());
         PR.setAmount(paymentRecord.getAmount());
         PR.setPeramount(peramount);
         PR.setBonus(paymentRecord.getBonus());
