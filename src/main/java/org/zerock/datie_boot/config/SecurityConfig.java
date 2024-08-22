@@ -60,6 +60,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/profile").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/admin/list").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/admin/list").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/chat/request").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/diary").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/diary/detail").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/diary/confirmdate").permitAll()
