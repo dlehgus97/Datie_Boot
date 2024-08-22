@@ -31,4 +31,6 @@ public class PaymentRecord {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "companyno", insertable = false, updatable = false)
     private Company company;
+
+    private String category;
 }
