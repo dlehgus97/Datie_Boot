@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zerock.datie_boot.entity.Account;
 import org.zerock.datie_boot.entity.Card;
-import org.zerock.datie_boot.entity.Diary;
 import org.zerock.datie_boot.entity.PaymentRecord;
 import org.zerock.datie_boot.repository.AccountRepository;
 import org.zerock.datie_boot.repository.CardRepository;
