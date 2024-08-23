@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @Service
 public class DiaryImageService {
 
-    private static final String UPLOAD_DIR = "D:/shpj2/datie_boot/src/main/resources/static/upload";  // 변경된 경로
+    private static final String UPLOAD_DIR = "D:/shpj2/datie_boot/src/main/resources/static/upload/diary";  // 변경된 경로
 
     @Autowired
     private DiaryImageRepository diaryImageRepository;
