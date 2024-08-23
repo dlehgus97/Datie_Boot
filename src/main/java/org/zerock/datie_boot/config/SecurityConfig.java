@@ -54,6 +54,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/main").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/company").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/cardpassword").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/changepassword/**").permitAll()
                         .requestMatchers(HttpMethod.GET,"/qr.html").permitAll()
                         .requestMatchers(HttpMethod.GET,"/qr").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/check-login").permitAll()
@@ -68,8 +69,13 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/user/{userno}").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/card/{cardno}").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/card/{cardno}/payment-records").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/profile").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/profile/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/cancelcard/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/lostcard/**").permitAll()
                         .anyRequest().authenticated()
                 )
+
                 .formLogin(auth -> auth.disable())
                 .httpBasic(auth -> auth.disable())
                 .sessionManagement(session -> session
