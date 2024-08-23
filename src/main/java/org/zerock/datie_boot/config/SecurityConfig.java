@@ -51,6 +51,7 @@ public class SecurityConfig {
                 .authorizeRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/signup").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/main").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/company").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/cardpassword").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/changepassword/**").permitAll()
@@ -65,6 +66,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/diary").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/diary/detail").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/diary/confirmdate").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/user/{userno}").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/card/{cardno}").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/card/{cardno}/payment-records").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/profile").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/profile/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/cancelcard/**").permitAll()

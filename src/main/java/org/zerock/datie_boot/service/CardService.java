@@ -14,6 +14,10 @@ public class CardService {
 
     @Autowired
     private CardRepository cardRepository;
+  
+    public Card getCardInfo(int cardno) {
+        return cardRepository.findByCardno(cardno);
+    }
 
     public boolean changeCardPassword(PasswordChangeRequestDTO passwordChangeRequestDTO) {
         System.out.println("Attempting to change password with DTO: " + passwordChangeRequestDTO);
@@ -74,6 +78,4 @@ public class CardService {
         }
         return false;
     }
-
-
 }

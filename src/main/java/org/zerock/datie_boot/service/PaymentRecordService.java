@@ -15,6 +15,7 @@ import org.zerock.datie_boot.repository.PaymentRecordRepository;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class PaymentRecordService {
@@ -41,6 +42,9 @@ public class PaymentRecordService {
         return paymentRecordRepository.save(paymentrecord);
     }
 
+    public List<PaymentRecord> getPaymentRecordsByCardno(int cardno) {
+        return paymentRecordRepository.findByCardno(cardno);
+    }
 
     public String processPayment(PaymentRecord paymentRecord) {
         PaymentRecord PR = new PaymentRecord();
@@ -80,16 +84,16 @@ public class PaymentRecordService {
 
                 //gpt 카테고리 산출
                 System.out.println("카테고리 불러오기");
-                String prompt = "";
+                String prompt = "소비내역의 내용이야. 이 내용을 구글에 검색해 보고 내가 제시한 카테고리중 어디에 포함될지 유추한 뒤에 괄호를 뺀 카테고리만 말해." +
+                        " 내용=" + PR.getContent() +
+                        " 카테고리=식료품 (마트, 편의점 등에서 구매한 식료품) 외식 (레스토랑, 패스트푸드, 카페 등에서의 식사) 교통비 (버스, 지하철, 택시, 주유비 등) 의료비 (병원, 약국 등에서 발생한 의료 관련 비용) 쇼핑 (의류, 전자제품, 가구 등 물품 구매) 공과금 (전기, 가스, 수도, 통신비 등) 보험료 (생명보험, 건강보험, 자동차보험 등) 교육비 (학원비, 교재 구입 등) 문화/여가 (영화, 공연, 운동, 여행 등) 인터넷/통신비 (인터넷 요금, 휴대폰 요금 등) 기부/후원 (기부금, 후원금 등) 자동차 관련 비용 (차량 유지비, 주차비, 자동차 수리비 등) 미용/패션 (미용실, 화장품, 액세서리 등) 가정생활 (청소 용품, 주방 용품, 가구 등) 이자/대출 상환 (이자 지급, 대출 원금 상환 등) 세금 (소득세, 지방세, 부가세 등) 회원비 (헬스장, 구독 서비스 등) 선물/경조사 (경조사비, 선물 구입 등) 기타 (특정 분류에 해당하지 않는 기타 지출) 저축/투자 (저축, 주식 구매, 펀드 투자 등)";
                 GptRequest request = new GptRequest(model, prompt);
                 System.out.println("prompt : " + prompt);
                 System.out.println("request : " + request);
                 GptResponse gptResponse = template.postForObject(apiURL, request, GptResponse.class);
                 System.out.println("Response : " + gptResponse);
 
-                String category = "소비내역의 내용이야. 이 내용을 보고 내가 제시한 카테고리중 어디에 포함될지 유추하고 괄호를 뺀 카테고리만 말해." +
-                        " 내용=" + PR.getContent() +
-                        " 카테고리=식료품 (마트, 편의점 등에서 구매한 식료품) 외식 (레스토랑, 패스트푸드, 카페 등에서의 식사) 교통비 (버스, 지하철, 택시, 주유비 등) 의료비 (병원, 약국 등에서 발생한 의료 관련 비용) 쇼핑 (의류, 전자제품, 가구 등 물품 구매) 공과금 (전기, 가스, 수도, 통신비 등) 보험료 (생명보험, 건강보험, 자동차보험 등) 교육비 (학원비, 교재 구입 등) 문화/여가 (영화, 공연, 운동, 여행 등) 인터넷/통신비 (인터넷 요금, 휴대폰 요금 등) 기부/후원 (기부금, 후원금 등) 자동차 관련 비용 (차량 유지비, 주차비, 자동차 수리비 등) 미용/패션 (미용실, 화장품, 액세서리 등) 가정생활 (청소 용품, 주방 용품, 가구 등) 이자/대출 상환 (이자 지급, 대출 원금 상환 등) 세금 (소득세, 지방세, 부가세 등) 회원비 (헬스장, 구독 서비스 등) 선물/경조사 (경조사비, 선물 구입 등) 기타 (특정 분류에 해당하지 않는 기타 지출) 저축/투자 (저축, 주식 구매, 펀드 투자 등)";
+                String category = "";
                 if (gptResponse == null || gptResponse.getChoices() == null || gptResponse.getChoices().isEmpty()) {
                     category = "기타";
                 }

@@ -28,4 +28,8 @@ public class UserService {
         Optional<User> optionalUser = userRepository.findById(Integer.valueOf(id));
         return optionalUser.orElse(null);
     }
+
+    public Optional<User> getUserByUserno(int userno) {
+        return userRepository.findByUserno(userno);
+    }
 }

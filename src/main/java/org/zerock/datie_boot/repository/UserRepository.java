@@ -10,4 +10,7 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Integer> {
     @Query("SELECT u FROM User u WHERE u.id = :id")
     Optional<User> findByUserId(@Param("id") String id); // id를 가지고 db에서 회원 조회하기위한 메서드
+
+    @Query("SELECT u FROM User u WHERE u.userno = :userno")
+    Optional<User> findByUserno(@Param("userno") int userno); // id를 가지고 db에서 회원 조회하기위한 메서드
 }

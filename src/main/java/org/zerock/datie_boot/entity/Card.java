@@ -1,5 +1,7 @@
 package org.zerock.datie_boot.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -22,12 +24,5 @@ public class Card {
     private int cardtypeno;
     private int cvc;
     private Timestamp date;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userno", insertable = false, updatable = false)
-    private User user;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cardtypeno", insertable = false, updatable = false)
-    private CardType cardType;
+    private String serial_number;
 }
