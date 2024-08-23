@@ -51,10 +51,8 @@ public class SecurityConfig {
                 .authorizeRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/signup").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/main").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/company").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/cardpassword").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/changepassword/**").permitAll()
                         .requestMatchers(HttpMethod.GET,"/qr.html").permitAll()
                         .requestMatchers(HttpMethod.GET,"/qr").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/check-login").permitAll()
@@ -73,6 +71,11 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/profile/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/cancelcard/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/lostcard/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/admin/list").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/admin/list").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/lovercheck").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/userInfoByNo").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/creationCard").permitAll()
                         .anyRequest().authenticated()
                 )
 
