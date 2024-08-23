@@ -1,7 +1,5 @@
 package org.zerock.datie_boot.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -24,5 +22,8 @@ public class Card {
     private int cardtypeno;
     private int cvc;
     private Timestamp date;
-    private String serial_number;
+
+    private String titleHolder;
+    private String initials;
+    private String serialNumber;
 }
