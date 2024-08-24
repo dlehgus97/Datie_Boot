@@ -58,6 +58,10 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET,"/api/check-login").permitAll()
                         .requestMatchers(HttpMethod.POST,"/api/payresult").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/profile").permitAll()
+//                        .requestMatchers(HttpMethod.POST, "/check-person").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/check-id").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/check-account").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/check-fourdigit").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(auth -> auth.disable())
@@ -79,9 +83,5 @@ public class SecurityConfig {
         return http.build();
     }
 
-//    @Bean
-//    public LoginFilter loginFilter() throws Exception {
-//        return new LoginFilter(passwordEncoder(), jwtUtil); // LoginFilter Bean으로 등록
-//    }
 
 }
