@@ -3,7 +3,6 @@ package org.zerock.datie_boot.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.sql.Timestamp;
 
 @Entity
 @Data

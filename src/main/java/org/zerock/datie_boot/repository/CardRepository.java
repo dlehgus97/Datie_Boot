@@ -10,9 +10,12 @@ import java.util.Optional;
 public interface CardRepository extends JpaRepository<Card, Integer> {
 
 
+
     // userno로 Card를 찾는 메서드
     Optional<Card> findByUserno(int userno);
 
     //carno로 card를 찾는 메서드
     Card findByCardno(int cardno);
+
+    Optional<Card> findBySerialNumber(String serialNumber);
 }
