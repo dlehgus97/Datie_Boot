@@ -6,17 +6,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class DiaryDTO {
-    private Long diaryNo;
+    private int diaryNo;
     private String review;
     private Integer rate;
-    private String filenameOrg;
-    private String filenameReal;
-    private Integer amount;
+    private String uploadOrg;
+    private String uploadReal;
     private String companyName;
     private String type;
     private String companyAddress;
+
 }

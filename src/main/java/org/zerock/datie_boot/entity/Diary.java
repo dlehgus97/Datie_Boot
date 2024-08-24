@@ -10,15 +10,23 @@ public class Diary {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int diaryno;
+    @Column(name = "diaryno")
+    private int diaryNo;
 
-    private int payno;
+    @Column(name = "payno")
+    private int payNo;
+
+    @Column(name = "review")
     private String review;
-    private Double rate;
+
+    @Column(name = "rate")
+    private Integer rate;
+
+    @Column(name = "upload_real")
     private String uploadReal;
+
+    @Column(name = "upload_org")
     private String uploadOrg;
 
-    @ManyToOne
-    @JoinColumn(name = "payno", insertable = false, updatable = false)
-    private PaymentRecord paymentRecord;
+    // Getters and Setters
 }

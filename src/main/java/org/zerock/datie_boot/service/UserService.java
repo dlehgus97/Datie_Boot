@@ -29,6 +29,7 @@ public class UserService {
         return optionalUser.orElse(null);
     }
 
+
 //    // 실명인증으로 중복인원 확인하기
 //    public boolean checkIdNumberExists(String idNumber) {
 //        Optional<User> user = userRepository.findByIdNumber(idNumber);
@@ -47,5 +48,9 @@ public class UserService {
 
     public boolean checkAccountExists(String accountno) {
         return userRepository.existsByAccountno(accountno);
+
+    public Optional<User> getUserByUserno(int userno) {
+        return userRepository.findByUserno(userno);
+
     }
 }

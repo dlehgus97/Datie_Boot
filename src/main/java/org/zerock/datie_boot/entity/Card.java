@@ -23,11 +23,7 @@ public class Card {
     private int cvc;
     private Timestamp date;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userno", insertable = false, updatable = false)
-    private User user;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cardtypeno", insertable = false, updatable = false)
-    private CardType cardType;
+    private String titleHolder;
+    private String initials;
+    private String serialNumber;
 }
