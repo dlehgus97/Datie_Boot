@@ -47,10 +47,11 @@ public class UserController {
         user.setId(signUpRequest.getId());
         user.setPw(signUpRequest.getPw());
         user.setName(signUpRequest.getName());
-        user.setIdnumber(signUpRequest.getIdnumber());
+//        user.setIdnumber(signUpRequest.getIdnumber());
         user.setHp(String.valueOf(signUpRequest.getHp()));
         user.setSex(signUpRequest.getSex());
         user.setAge(signUpRequest.getAge());
+        user.setBank(signUpRequest.getBank());
         user.setAccountno(signUpRequest.getAccountno());
         user.setEmail(signUpRequest.getEmail());
         user.setAddr1(signUpRequest.getAddr1());

@@ -7,6 +7,7 @@ import org.zerock.datie_boot.entity.AccountTran;
 import java.util.List;
 
 @Repository
-public interface AccountTranRepository extends JpaRepository<AccountTran, Long> {
+public interface AccountTranRepository extends JpaRepository<AccountTran, Integer> {
     List<AccountTran> findByAccountnoAndAmount(int accountno, int amount);
+
 }

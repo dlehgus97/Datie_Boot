@@ -11,10 +11,11 @@ public class SignUpRequest {
     private String pw;    // 비밀번호
     private String addr1;     // 주소
     private String addr2; // 상세 주소
-    private String accountno;      // 계좌
+    private String bank;
+    private int accountno;      // 계좌
     private Integer hp;
     private String email;
-    private String idnumber;
+//    private String idnumber;
     private String sex;
     private Integer age;
 
@@ -23,7 +24,7 @@ public class SignUpRequest {
     }
 
     // 생성자
-    public SignUpRequest(String id, String name, String pw, String addr1, String addr2, Integer hp, String email, String accountno, String idnumber, String sex, Integer age ) {
+    public SignUpRequest(String id, String name, String pw, String addr1, String addr2, Integer hp, String email, int accountno, String idnumber, String sex, Integer age, String bank ) {
         this.id = id;
         this.name = name;
         this.pw = pw;
@@ -32,9 +33,10 @@ public class SignUpRequest {
         this.hp = hp;
         this.email = email;
         this.accountno = accountno;
-        this.idnumber = idnumber;
+//        this.idnumber = idnumber;
         this.sex=sex;
         this.age=age;
+        this.bank=bank;
 
 
     }
