@@ -8,7 +8,7 @@ import org.zerock.datie_boot.entity.User;
 
 import java.util.Optional;
 
-public interface ProfileRepository extends JpaRepository<User, Integer> {
+public interface ProfileRepository extends JpaRepository<User, Long> {
 
     @Query(value = "SELECT new org.zerock.datie_boot.dto.ProfileDTO(u, a.bank, a.account) " +
             "FROM User u LEFT JOIN Account a ON CAST(u.accountno AS int) = a.accountno " +

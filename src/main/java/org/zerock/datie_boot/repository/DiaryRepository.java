@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface DiaryRepository extends JpaRepository<Diary, Integer> {
 
-    @Query("SELECT new org.zerock.datie_boot.dto.DiaryDTO(d.diaryNo, d.review, d.rate, d.uploadOrg, d.uploadReal, com.companyname, com.type, com.companyaddress) " +
+    @Query("SELECT new org.zerock.datie_boot.dto.DiaryDTO(d.diaryNo, d.review, d.rate, d.uploadOrg, d.uploadReal, com.companyname, com.type, com.companyaddress, p.category) " +
             "FROM Diary d " +
             "JOIN PaymentRecord p ON d.payNo = p.payno " +
             "JOIN Company com ON p.companyno = com.companyno " +

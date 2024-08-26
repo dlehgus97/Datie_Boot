@@ -40,8 +40,6 @@ public class DiaryImageService {
             diaryImage.setDiaryno(diaryNo);
             diaryImage.setImageName(uniqueFilename);
             diaryImageRepository.save(diaryImage);
-
-
         }
     }
 
