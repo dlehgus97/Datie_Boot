@@ -3,6 +3,7 @@ package org.zerock.datie_boot.service;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.zerock.datie_boot.dto.CardRequestDTO;
 import org.zerock.datie_boot.entity.Card;
@@ -23,9 +24,20 @@ public class CardCreationService {
 
     @Autowired
     CardRepository cardRepository;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     public Integer loverCheck(String id, String password) {
-        Optional<User> userOptional = userRepository.findByIdAndPassword(id, password);
+        Optional<User> userOptional = userRepository.findByUserId(id);
+
+        if(userOptional.isPresent()){
+            if(!passwordEncoder.matches(password , userOptional.get().getPw())){
+                return null;
+            }
+        }else {
+            return null;
+        }
+
 
         if (userOptional.isPresent()) {
             User user = userOptional.get();
