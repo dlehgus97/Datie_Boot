@@ -20,7 +20,7 @@ public class Diary {
     private String review;
 
     @Column(name = "rate")
-    private int rate;
+    private Integer rate;
 
     @Column(name = "upload_real")
     private String uploadReal;

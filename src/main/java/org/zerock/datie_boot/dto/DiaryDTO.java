@@ -17,5 +17,6 @@ public class DiaryDTO {
     private String companyName;
     private String type;
     private String companyAddress;
+    private String category;
 
 }

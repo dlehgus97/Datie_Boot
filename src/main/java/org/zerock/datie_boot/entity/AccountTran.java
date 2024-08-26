@@ -20,7 +20,7 @@ public class AccountTran {
     private Timestamp confirmdate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "acountno", insertable = false, updatable = false)
+    @JoinColumn(name = "accountno", insertable = false, updatable = false)
     private Account account;
 
     // Getters and setters

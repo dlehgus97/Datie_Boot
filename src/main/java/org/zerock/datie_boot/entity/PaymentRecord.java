@@ -1,5 +1,6 @@
 package org.zerock.datie_boot.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -26,9 +27,13 @@ public class PaymentRecord {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cardno", insertable = false, updatable = false)
+    @JsonIgnore
     private Card card;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "companyno", insertable = false, updatable = false)
+    @JsonIgnore
     private Company company;
+
+    private String category;
 }
