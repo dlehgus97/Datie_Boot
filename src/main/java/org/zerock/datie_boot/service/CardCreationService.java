@@ -31,9 +31,16 @@ public class CardCreationService {
         Optional<User> userOptional = userRepository.findByUserId(id);
 
         if(userOptional.isPresent()){
-            if(!passwordEncoder.matches(password , userOptional.get().getPw())){
+
+            User user = userOptional.get();
+            if(!passwordEncoder.matches(password , user.getPw())){
                 return null;
             }
+
+            if(user.getCardno() != 0){
+                return 0;
+            }
+
         }else {
             return null;
         }
