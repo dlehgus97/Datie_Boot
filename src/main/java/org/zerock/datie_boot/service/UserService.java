@@ -61,6 +61,7 @@ public class UserService {
 //    }
 
     public boolean checkAccountExists(String accountno) {
+
         boolean exists = accountRepository.existsByAccount(accountno);
         //accountno 는 -> account
         //account로 accountno 를 찾아야한다.
@@ -79,5 +80,8 @@ public class UserService {
         }
         return exists;
 
+
+    public Optional<User> getUserByUserno(int userno) {
+        return userRepository.findByUserno(userno);
     }
 }

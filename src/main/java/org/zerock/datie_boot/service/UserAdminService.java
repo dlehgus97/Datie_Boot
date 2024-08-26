@@ -10,6 +10,7 @@ import org.zerock.datie_boot.entity.User;
 import org.zerock.datie_boot.repository.CardAdminRepository;
 import org.zerock.datie_boot.repository.UserAdminRepository;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,11 +78,16 @@ public class UserAdminService {
 
     @Transactional
     public void deactivateByUserId(String id) {
-        cardAdminRepository.deactivateByUserId(id);
+        String maxDate = cardAdminRepository.getMaxDate(id);
+        Timestamp timestamp = Timestamp.valueOf(maxDate);
+        cardAdminRepository.deactivateByUserId(id , timestamp);
+        cardAdminRepository.zeroCardno(id);
     }
 
     @Transactional
     public void holdByUserId(String id) {
-        cardAdminRepository.holdByUserId(id);
+        String maxDate = cardAdminRepository.getMaxDate(id);
+        Timestamp timestamp = Timestamp.valueOf(maxDate);
+        cardAdminRepository.holdByUserId(id , timestamp);
     }
 }
