@@ -17,19 +17,20 @@ public interface UserAdminRepository extends JpaRepository<User, Integer> {
 
 
 
-    @Query("SELECT u , c FROM User u LEFT JOIN Card c ON u.userno = c.userno")
+    @Query("SELECT u, c FROM User u LEFT JOIN Card c ON u.userno = c.userno " +
+            "WHERE (c.cModdate IS NULL OR c.cModdate = (SELECT MAX(c2.cModdate) FROM Card c2 WHERE c2.userno = u.userno))")
     public List<Object[]> adminGetList();
 
     @Query("SELECT u, c FROM User u LEFT JOIN Card c ON u.userno = c.userno "
-            + "WHERE u.userno = :num ")
+            + "WHERE u.userno = :num AND (c.cModdate IS NULL OR c.cModdate = (SELECT MAX(c2.cModdate) FROM Card c2 WHERE c2.userno = u.userno))")
     public List<Object[]> adminGetListByNum(String num);
 
     @Query("SELECT u, c FROM User u LEFT JOIN Card c ON u.userno = c.userno "
-            + "WHERE u.id LIKE CONCAT('%', :id, '%')")
+            + "WHERE u.id LIKE CONCAT('%', :id, '%') AND (c.cModdate IS NULL OR c.cModdate = (SELECT MAX(c2.cModdate) FROM Card c2 WHERE c2.userno = u.userno))")
     List<Object[]> adminGetListById(String id);
 
     @Query("SELECT u, c FROM User u LEFT JOIN Card c ON u.userno = c.userno "
-            + "WHERE u.name LIKE CONCAT('%', :name, '%')")
+            + "WHERE u.name LIKE CONCAT('%', :name, '%') AND (c.cModdate IS NULL OR c.cModdate = (SELECT MAX(c2.cModdate) FROM Card c2 WHERE c2.userno = u.userno))")
     List<Object[]> adminGetListByName(String name);
 
 
@@ -39,7 +40,8 @@ public interface UserAdminRepository extends JpaRepository<User, Integer> {
             + "WHEN :ms = '탈퇴' THEN 0 "
             + "WHEN :ms = '이용중' THEN 1 "
             + "WHEN :ms = '관리자' THEN 2 "
-            + "END")
+            + "END "
+            + "AND (c.cModdate IS NULL OR c.cModdate = (SELECT MAX(c2.cModdate) FROM Card c2 WHERE c2.userno = u.userno))" )
     List<Object[]> adminGetListByMs(String ms);
 
     @Query("SELECT u, c FROM User u LEFT JOIN Card c ON u.userno = c.userno "
@@ -48,7 +50,8 @@ public interface UserAdminRepository extends JpaRepository<User, Integer> {
             + "WHEN :cs = '정지' THEN 2 "
             + "WHEN :cs = '해지' THEN 3 "
             + "WHEN :cs = '정지신청' THEN 4 "
-            + "END) "
-            + "OR (:cs = '미사용' AND c.cStatus IS NULL)")
+            + "END ) "
+            + "OR (:cs = '미사용' AND c.cStatus IS NULL) "
+            + "AND (c.cModdate IS NULL OR c.cModdate = (SELECT MAX(c2.cModdate) FROM Card c2 WHERE c2.userno = u.userno))")
     List<Object[]> adminGetListByCs(String cs);
 }
