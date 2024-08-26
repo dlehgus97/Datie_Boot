@@ -51,5 +51,6 @@ public class UserService {
 
     public boolean checkAccountExists(String accountno) {
         return userRepository.existsByAccountno(accountno);
+
     }
 }
