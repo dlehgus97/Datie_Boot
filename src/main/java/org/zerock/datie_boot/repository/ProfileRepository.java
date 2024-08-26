@@ -10,8 +10,8 @@ import java.util.Optional;
 
 public interface ProfileRepository extends JpaRepository<User, Long> {
 
-    @Query(value = "SELECT new org.zerock.datie_boot.dto.ProfileDTO(u, a.bank, a.account) " +
-            "FROM User u LEFT JOIN Account a ON CAST(u.accountno AS int) = a.accountno " +
-            "WHERE u.userno = :userno", nativeQuery = true)// user accountno를 string으로 바꿧을때
+    @Query("SELECT new org.zerock.datie_boot.dto.ProfileDTO(u.userno, u.name, u.pw, u.email, u.addr1, u.addr2, u.sex,u.age, a.account, u.accountno, a.bank, u.moddate) " +
+            "FROM User u LEFT JOIN Account a ON u.userno = a.userno " +
+            "WHERE u.userno = :userno")
     Optional<ProfileDTO> findUserWithAccountByUserno(@Param("userno") int userno);
 }

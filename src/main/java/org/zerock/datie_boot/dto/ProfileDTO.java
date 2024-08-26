@@ -18,8 +18,8 @@ public class ProfileDTO {
     private String addr2;
     private String sex;
     private int age;
-    private int accountno; // 추가
+    private String account; // 추가
+    private int accountno;
     private String bank;
-    private String account;
     private LocalDateTime moddate;
 }

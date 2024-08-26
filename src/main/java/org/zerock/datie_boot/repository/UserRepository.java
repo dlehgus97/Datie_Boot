@@ -31,7 +31,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 //    @Query("SELECT CASE WHEN COUNT(a) > 0 THEN true ELSE false END FROM AccountTran a WHERE SUBSTRING(a.name, LENGTH(a.name) - 3, 4) = ?1 AND a.amount = 1")
 //    boolean existsByLastFourDigits(String lastFourDigits);
 
-    boolean existsByAccountno(String accountno);
+//    boolean existsByAccountno(String accountno);
 
 //    @Query("SELECT u FROM User u WHERE u.idnumber = :idnumber")
 //    Optional<User> findByIdNumber(@Param("idnumber") String idnumber);

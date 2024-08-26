@@ -15,14 +15,15 @@ public class User {
     private String id;
     private String pw;
     private String name;
-    private String idnumber;
+//    private String idnumber;
     private String hp;
     private String email;
     private String addr1;
     private String addr2;
     private String sex;
     private int age;
-    private String accountno;
+    private String bank;
+    private int accountno;
     private int cardno;
     private String profileReal;
     private String profileOrg;
