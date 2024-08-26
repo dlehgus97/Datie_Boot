@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.zerock.datie_boot.dto.DeleteIdDTO;
 import org.zerock.datie_boot.dto.ProfileDTO;
 import org.zerock.datie_boot.entity.DiaryImage;
 import org.zerock.datie_boot.entity.User;
@@ -66,37 +67,6 @@ public class ProfileController {
         }
     }
 
-//    @GetMapping("profileImage/{userno}")
-//    public ResponseEntity<String> getProfileUrl(@PathVariable int userno) {
-//        Optional<User> optionalUser = userRepository.findByUserno(userno);
-//
-//        if (optionalUser.isPresent()) {
-//            User user = optionalUser.get();
-//
-//            // 프로필 이미지 URL 생성
-//            String profileUrl = "http://localhost:8090/api/profileImage/" + user.getProfileReal();  // 파일명으로 URL을 생성
-//
-//            return ResponseEntity.ok(profileUrl);
-//        } else {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("유저를 찾을 수 없습니다.");
-//        }
-//    }
-//
-//    @GetMapping("profileImage/{imageName}")
-//    public ResponseEntity<Resource> getDiaryImage(@PathVariable String imageName) {
-//        try {
-//            Path filePath = Paths.get("src/main/resources/static/upload/profile/" + imageName);
-//            Resource resource = new UrlResource(filePath.toUri());
-//            System.out.println(resource.getFilename());
-//
-//            return ResponseEntity.ok()
-//                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
-//                    .body(resource);
-//        } catch (Exception e) {
-//            throw new RuntimeException("File not found: " + imageName);
-//        }
-//    }
-
     @GetMapping("/profileImage/{userno}")
     public ResponseEntity<Resource> getProfileImage(@PathVariable int userno) {
         Optional<User> optionalUser = userRepository.findByUserno(userno);
@@ -122,6 +92,16 @@ public class ProfileController {
             }
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+    @PostMapping("/delete/{userno}")
+    public ResponseEntity<String> deleteID(@RequestBody DeleteIdDTO deleteIdDTO) {
+        boolean isDeleted = profileService.deleteID(deleteIdDTO);
+
+        if (isDeleted) {
+            return new ResponseEntity<>("User or Card status updated successfully.", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Failed to update status. User or Card not found.", HttpStatus.NOT_FOUND);
         }
     }
 }

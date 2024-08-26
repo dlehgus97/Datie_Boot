@@ -29,6 +29,9 @@ public class UserService {
         return optionalUser.orElse(null);
     }
 
+    public Optional<User> getUserByUserno(int userno) {
+        return userRepository.findByUserno(userno);
+    }
 
 //    // 실명인증으로 중복인원 확인하기
 //    public boolean checkIdNumberExists(String idNumber) {

@@ -2,7 +2,9 @@ package org.zerock.datie_boot.controller;
 
 import com.nimbusds.openid.connect.sdk.UserInfoResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.zerock.datie_boot.dto.CardRequestDTO;
 import org.zerock.datie_boot.entity.User;
@@ -20,13 +22,19 @@ public class CardCreationController {
     @Autowired
     private CardCreationService cardCreationService;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
+
     @PostMapping("/lovercheck")
     public ResponseEntity<String> loverCheck(@RequestBody CardRequestDTO cardRequest) {
         Integer userno = cardCreationService.loverCheck(cardRequest.getId() , cardRequest.getPassword());
-        if(userno!=null){
+        if(userno == null){
+            return ResponseEntity.ok("회원정보가 일치 하지 않습니다.");
+        }else if (userno == 0 ){
+            return ResponseEntity.ok("회원의 카드가 이미 존재 합니다.");
+        } else {
             return ResponseEntity.ok(String.valueOf(userno));
-        }else {
-            return ResponseEntity.ok("fail");
         }
 
     }
