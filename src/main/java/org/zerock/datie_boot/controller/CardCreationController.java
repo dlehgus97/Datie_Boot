@@ -28,8 +28,7 @@ public class CardCreationController {
 
     @PostMapping("/lovercheck")
     public ResponseEntity<String> loverCheck(@RequestBody CardRequestDTO cardRequest) {
-
-        Integer userno = cardCreationService.loverCheck(cardRequest.getId() , passwordEncoder.encode(cardRequest.getPassword()));
+        Integer userno = cardCreationService.loverCheck(cardRequest.getId() , cardRequest.getPassword());
         if(userno!=null){
             return ResponseEntity.ok(String.valueOf(userno));
         }else {
