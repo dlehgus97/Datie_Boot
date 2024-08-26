@@ -10,4 +10,8 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     //userno로 account조회
     Account findByUserno(int userno);
 
+
+
+    Optional<Account> findByAccount(String accountno);
+
 }

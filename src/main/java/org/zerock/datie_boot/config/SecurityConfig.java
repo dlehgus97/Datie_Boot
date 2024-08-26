@@ -58,17 +58,29 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET,"/api/check-login").permitAll()
                         .requestMatchers(HttpMethod.POST,"/api/payresult").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/profile").permitAll()
+
+//                        .requestMatchers(HttpMethod.POST, "/check-person").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/check-id").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/check-account").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/check-fourdigit").permitAll()
+
                         .requestMatchers(HttpMethod.GET, "/api/admin/list").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/admin/list").permitAll()
                         .requestMatchers(HttpMethod.POST, "/chat/request").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/diary").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/diary/detail").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/diary/confirmdate").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/diary/upload").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/diary/imageUpload").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/diary/image").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/diary/images/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/diary/image/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/user/{userno}").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/card/{cardno}").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/card/{cardno}/payment-records").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/profile").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/profile/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/profileUpload/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/profileImage/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/cancelcard/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/lostcard/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/admin/list").permitAll()
@@ -76,6 +88,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/lovercheck").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/userInfoByNo").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/creationCard").permitAll()
+
                         .anyRequest().authenticated()
                 )
 
@@ -98,9 +111,5 @@ public class SecurityConfig {
         return http.build();
     }
 
-//    @Bean
-//    public LoginFilter loginFilter() throws Exception {
-//        return new LoginFilter(passwordEncoder(), jwtUtil); // LoginFilter Bean으로 등록
-//    }
 
 }

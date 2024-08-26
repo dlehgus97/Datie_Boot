@@ -6,11 +6,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.zerock.datie_boot.entity.Account;
 import org.zerock.datie_boot.entity.Card;
+import org.zerock.datie_boot.entity.Diary;
 import org.zerock.datie_boot.entity.PaymentRecord;
 import org.zerock.datie_boot.gpt.GptRequest;
 import org.zerock.datie_boot.gpt.GptResponse;
 import org.zerock.datie_boot.repository.AccountRepository;
 import org.zerock.datie_boot.repository.CardRepository;
+import org.zerock.datie_boot.repository.DiaryRepository;
 import org.zerock.datie_boot.repository.PaymentRecordRepository;
 
 import java.sql.Timestamp;
@@ -20,6 +22,8 @@ import java.util.List;
 @Service
 public class PaymentRecordService {
 
+    @Autowired
+    private DiaryRepository diaryRepository;
     @Autowired
     private PaymentRecordRepository paymentRecordRepository;
 
@@ -51,6 +55,7 @@ public class PaymentRecordService {
         int cardno = paymentRecord.getCardno();
         int peramount = paymentRecord.getPeramount();
         Card card = cardRepository.findByCardno(cardno);
+
 
 
         PR.setCardno(cardno);
@@ -102,6 +107,11 @@ public class PaymentRecordService {
                 PR.setCategory(category);
                 PR.setPaystate(1);
                 paymentRecordRepository.save(PR);
+                int payno = PR.getPayno();
+                //다이어리에 넣어주기
+                Diary dr =new Diary();
+                dr.setPayNo(payno);
+                diaryRepository.save(dr);
                 return "결제 성공";
 
             } else {
