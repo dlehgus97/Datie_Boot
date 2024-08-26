@@ -48,9 +48,9 @@ public class UserService {
 
     public boolean checkAccountExists(String accountno) {
         return userRepository.existsByAccountno(accountno);
+
     }
     public Optional<User> getUserByUserno(int userno) {
         return userRepository.findByUserno(userno);
-
     }
 }

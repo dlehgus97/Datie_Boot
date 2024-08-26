@@ -81,6 +81,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/profile/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/profileUpload/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/profileImage/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/delete/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/cancelcard/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/lostcard/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/admin/list").permitAll()
