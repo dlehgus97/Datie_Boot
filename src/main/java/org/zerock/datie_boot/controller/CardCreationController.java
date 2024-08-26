@@ -29,10 +29,12 @@ public class CardCreationController {
     @PostMapping("/lovercheck")
     public ResponseEntity<String> loverCheck(@RequestBody CardRequestDTO cardRequest) {
         Integer userno = cardCreationService.loverCheck(cardRequest.getId() , cardRequest.getPassword());
-        if(userno!=null){
+        if(userno == null){
+            return ResponseEntity.ok("회원정보가 일치 하지 않습니다.");
+        }else if (userno == 0 ){
+            return ResponseEntity.ok("회원의 카드가 이미 존재 합니다.");
+        } else {
             return ResponseEntity.ok(String.valueOf(userno));
-        }else {
-            return ResponseEntity.ok("fail");
         }
 
     }
