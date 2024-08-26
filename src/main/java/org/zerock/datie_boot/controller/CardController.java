@@ -1,11 +1,13 @@
 package org.zerock.datie_boot.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.zerock.datie_boot.entity.Card;
 import org.zerock.datie_boot.entity.User;
 import org.zerock.datie_boot.repository.CardRepository;
+import org.zerock.datie_boot.repository.UserRepository;
 import org.zerock.datie_boot.service.CardService;
 import org.zerock.datie_boot.dto.PasswordChangeRequestDTO;
 
@@ -21,9 +23,24 @@ public class CardController {
     @Autowired
     private CardRepository cardRepository;
 
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private CardService cardService;
+
+    @PostMapping("/getCardno")
+    public ResponseEntity<Integer> getCardnoByUserno(@RequestParam int userno) {
+        Optional<User> optionalUser = userRepository.findByUserno(userno);
+        System.out.println("come");
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+
+            return ResponseEntity.ok(user.getCardno());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
 
     @PostMapping("/cardpassword")
     public ResponseEntity<Map<String, Integer>> getCardPassword(@RequestBody User user) {

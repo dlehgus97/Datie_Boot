@@ -98,6 +98,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/diary/images/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/diary/image/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/user/{userno}").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/{getCardno}").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/card/{cardno}").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/card/{cardno}/payment-records").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/profile/**").permitAll()
