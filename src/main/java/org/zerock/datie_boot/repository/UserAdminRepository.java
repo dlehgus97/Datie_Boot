@@ -45,13 +45,13 @@ public interface UserAdminRepository extends JpaRepository<User, Integer> {
     List<Object[]> adminGetListByMs(String ms);
 
     @Query("SELECT u, c FROM User u LEFT JOIN Card c ON u.userno = c.userno "
-            + "WHERE (c.cStatus = CASE "
+            + "WHERE ( (c.cStatus = CASE "
             + "WHEN :cs = '사용중' THEN 1 "
             + "WHEN :cs = '정지' THEN 2 "
             + "WHEN :cs = '해지' THEN 3 "
             + "WHEN :cs = '정지신청' THEN 4 "
             + "END ) "
-            + "OR (:cs = '미사용' AND c.cStatus IS NULL) "
+            + "OR (:cs = '미사용' AND c.cStatus IS NULL) ) "
             + "AND (c.cModdate IS NULL OR c.cModdate = (SELECT MAX(c2.cModdate) FROM Card c2 WHERE c2.userno = u.userno))")
     List<Object[]> adminGetListByCs(String cs);
 }
