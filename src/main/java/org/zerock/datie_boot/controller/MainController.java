@@ -23,10 +23,10 @@ public class MainController {
     @Autowired
     private CardService cardService;
 
-    @PostMapping("/user/{userno}")
-    public Optional<User> getUser(@PathVariable int userno) {
-        return userService.getUserByUserno(userno);
-    }
+//    @PostMapping("/user/{userno}")
+//    public Optional<User> getUser(@PathVariable int userno) {
+//        return userService.getUserByUserno(userno);
+//    }
 
     @PostMapping("/card/{cardno}/payment-records")
     public List<PaymentRecord> getPaymentRecords(@PathVariable int cardno) {
