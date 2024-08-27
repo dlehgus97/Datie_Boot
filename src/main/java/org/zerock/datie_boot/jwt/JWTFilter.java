@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.zerock.datie_boot.dto.CustomUserDetails;
 import org.zerock.datie_boot.entity.User;
-import org.zerock.datie_boot.service.UserService;
 
 import java.io.IOException;
 

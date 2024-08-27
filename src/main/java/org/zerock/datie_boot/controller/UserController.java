@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import org.zerock.datie_boot.dto.AccountCheckRequest;
 import org.zerock.datie_boot.dto.IdCheckRequest;
 import org.zerock.datie_boot.dto.SignUpRequest;
 import org.zerock.datie_boot.dto.UserLoginRequest;
@@ -15,7 +14,6 @@ import org.zerock.datie_boot.entity.User;
 import org.zerock.datie_boot.jwt.JWTUtil;
 import org.zerock.datie_boot.repository.AccountRepository;
 import org.zerock.datie_boot.repository.AccountTranRepository;
-import org.zerock.datie_boot.service.UserService;
 
 import java.util.HashMap;
 import java.util.List;
