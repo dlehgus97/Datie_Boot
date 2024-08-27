@@ -18,6 +18,7 @@ import org.zerock.datie_boot.jwt.JWTUtil;
 import org.zerock.datie_boot.jwt.LoginFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.zerock.datie_boot.service.UserService;
 
 @Configuration
 @EnableWebSecurity
