@@ -81,7 +81,8 @@ public class UserService {
         return exists;
 
 
-    public Optional<User> getUserByUserno(int userno) {
-        return userRepository.findByUserno(userno);
+//        public Optional<User> getUserByUserno (int userno){
+//            return userRepository.findByUserno(userno);
+//        }
     }
 }
