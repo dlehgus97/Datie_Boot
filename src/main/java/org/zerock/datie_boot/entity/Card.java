@@ -22,7 +22,7 @@ public class Card {
     private int cardtypeno;
     private int cvc;
     private Timestamp date;
-
+    private Timestamp initialDate;
     private String titleHolder;
     private String initials;
     private String serialNumber;
