@@ -12,6 +12,7 @@ import org.zerock.datie_boot.dto.DeleteIdDTO;
 import org.zerock.datie_boot.dto.ProfileDTO;
 import org.zerock.datie_boot.entity.User;
 import org.zerock.datie_boot.repository.UserRepository;
+import org.zerock.datie_boot.service.ProfileService;
 
 import java.io.IOException;
 import java.nio.file.Path;
