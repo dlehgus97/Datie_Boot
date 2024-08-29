@@ -17,6 +17,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'  # 사용할 Java 버전
+          distribution: 'temurin'  # 사용할 Java 배포판
 
       - name: Create application.properties
         run: |
