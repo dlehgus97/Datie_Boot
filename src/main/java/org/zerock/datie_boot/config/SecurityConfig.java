@@ -16,9 +16,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.zerock.datie_boot.jwt.JWTFilter;
 import org.zerock.datie_boot.jwt.JWTUtil;
 import org.zerock.datie_boot.jwt.LoginFilter;
-import org.zerock.datie_boot.service.UserService;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.zerock.datie_boot.service.UserService;
 
 @Configuration
 @EnableWebSecurity
@@ -85,7 +85,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/check-id").permitAll()
                         .requestMatchers(HttpMethod.POST, "/check-account").permitAll()
                         .requestMatchers(HttpMethod.POST, "/check-fourdigit").permitAll()
-
+                                .requestMatchers(HttpMethod.GET, "/api/id").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/admin/list").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/admin/list").permitAll()
                         .requestMatchers(HttpMethod.POST, "/chat/request").permitAll()

@@ -5,11 +5,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.zerock.datie_boot.dto.DeleteIdDTO;
-import org.zerock.datie_boot.dto.PasswordChangeRequestDTO;
 import org.zerock.datie_boot.dto.ProfileDTO;
 import org.zerock.datie_boot.entity.Account;
 import org.zerock.datie_boot.entity.Card;
-import org.zerock.datie_boot.entity.DiaryImage;
 import org.zerock.datie_boot.entity.User;
 import org.zerock.datie_boot.repository.*;
 
@@ -18,7 +16,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 

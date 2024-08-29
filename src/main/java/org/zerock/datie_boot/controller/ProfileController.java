@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.zerock.datie_boot.dto.DeleteIdDTO;
 import org.zerock.datie_boot.dto.ProfileDTO;
-import org.zerock.datie_boot.entity.DiaryImage;
 import org.zerock.datie_boot.entity.User;
 import org.zerock.datie_boot.repository.UserRepository;
 import org.zerock.datie_boot.service.ProfileService;
@@ -18,9 +17,7 @@ import org.zerock.datie_boot.service.ProfileService;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
