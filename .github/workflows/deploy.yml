@@ -1,0 +1,74 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main  # 배포할 브랜치
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'  # 사용할 Java 버전
+
+      - name: Create application.properties
+        run: |
+          mkdir -p src/main/resources  # 디렉토리 생성
+          echo "spring.application.name=Datie_Boot" > src/main/resources/application.properties
+          echo "server.port=8090" >> src/main/resources/application.properties
+          echo "spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver" >> src/main/resources/application.properties
+          echo "spring.datasource.url=jdbc:mysql://shpj2.c7kiyueksao0.ap-northeast-2.rds.amazonaws.com:3306/datie?useSSL=false&serverTimezone=UTC" >> src/main/resources/application.properties
+          echo "spring.datasource.username=admin" >> src/main/resources/application.properties
+          echo "spring.datasource.password=datie1234!" >> src/main/resources/application.properties
+          echo "spring.jpa.hibernate.ddl-auto=none" >> src/main/resources/application.properties
+          echo "spring.jpa.generate-ddl=false" >> src/main/resources/application.properties
+          echo "spring.jpa.properties.hibernate.default_schema=datie" >> src/main/resources/application.properties
+          echo "spring.servlet.multipart.enabled=true" >> src/main/resources/application.properties
+          echo "spring.servlet.multipart.max-request-size=30MB" >> src/main/resources/application.properties
+          echo "spring.servlet.multipart.max-file-size=10MB" >> src/main/resources/application.properties
+          echo "spring.jpa.show-sql=true" >> src/main/resources/application.properties
+          echo "spring.jpa.database=mysql" >> src/main/resources/application.properties
+          echo "logging.level.org.hibernate=debug" >> src/main/resources/application.properties
+          echo "spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect" >> src/main/resources/application.properties
+          echo "logging.level.org.springframework.web=info" >> src/main/resources/application.properties
+          echo "logging.level.org.springframework.security=info" >> src/main/resources/application.properties
+          echo "logging.level.org.zerock=info" >> src/main/resources/application.properties
+          echo "# gpt api" >> src/main/resources/application.properties
+          echo "openai.api.key=1" >> src/main/resources/application.properties
+          echo "openai.model=gpt-4o" >> src/main/resources/application.properties
+          echo "openai.api.url=https://api.openai.com/v1/chat/completions" >> src/main/resources/application.properties
+          echo "# ???? ??" >> src/main/resources/application.properties
+          echo "spring.jwt.secret=vmfhaltmskdlstkfkdgodyroqkfwkdbalroqkfwkdbalaaaaaaaaaaaaaaaabbbbb" >> src/main/resources/application.properties
+
+      - name: Build with Gradle
+        run: ./gradlew build  # Gradle을 사용하여 빌드
+
+      - name: Copy files to EC2
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
+          source: "build/libs/*.jar"  # 빌드된 JAR 파일 경로
+          target: "/home/${{ secrets.EC2_USER }}/"  # EC2 인스턴스의 대상 경로
+
+      - name: SSH to EC2 and run the application
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
+          script: |
+            # 기존 프로세스 종료 (필요한 경우)
+            if pgrep -f ${{ secrets.APP_NAME }}; then
+              pkill -f ${{ secrets.APP_NAME }}
+            fi
+            # 애플리케이션 실행
+            java -jar /home/${{ secrets.EC2_USER }}/${{ secrets.APP_NAME }}.jar --server.port=${{ secrets.APP_PORT }} &
