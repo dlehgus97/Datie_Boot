@@ -71,6 +71,12 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           script: |
             # 기존 프로세스 종료 (필요한 경우)
+            echo $JAVA_HOME
+            echo $JAVA_HOME
+            echo $JAVA_HOME
+            echo $JAVA_HOME
+            echo $JAVA_HOME
+            echo $JAVA_HOME
             if pgrep -f ${{ secrets.APP_NAME }}; then
               pkill -f ${{ secrets.APP_NAME }}
             fi
