@@ -47,7 +47,10 @@ jobs:
           echo "openai.api.url=https://api.openai.com/v1/chat/completions" >> src/main/resources/application.properties
           echo "# ???? ??" >> src/main/resources/application.properties
           echo "spring.jwt.secret=vmfhaltmskdlstkfkdgodyroqkfwkdbalroqkfwkdbalaaaaaaaaaaaaaaaabbbbb" >> src/main/resources/application.properties
-
+      
+      - name: Grant execute permission to gradlew
+        run: chmod +x ./gradlew  # gradlew에 실행 권한 부여
+        
       - name: Build with Gradle
         run: ./gradlew build  # Gradle을 사용하여 빌드
 
