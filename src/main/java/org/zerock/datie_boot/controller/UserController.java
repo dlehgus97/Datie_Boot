@@ -14,13 +14,14 @@ import org.zerock.datie_boot.entity.User;
 import org.zerock.datie_boot.jwt.JWTUtil;
 import org.zerock.datie_boot.repository.AccountRepository;
 import org.zerock.datie_boot.repository.AccountTranRepository;
+import org.zerock.datie_boot.repository.UserRepository;
 import org.zerock.datie_boot.service.UserService;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
+@RequestMapping("/api")
 @RestController
 //@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
@@ -37,6 +38,8 @@ public class UserController {
 
     @Autowired
     private AccountTranRepository accountTranRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @PostMapping("/signup")
     public ResponseEntity<Map<String, Object>> signup(@RequestBody SignUpRequest signUpRequest) {
@@ -167,5 +170,19 @@ public class UserController {
         System.out.println("인증번호 일치 여부: " + isMatch); // 로그 추가
         return ResponseEntity.ok(Map.of("success", isMatch));
 
+
     }
+
+    @CrossOrigin(origins = "http://localhost:3000") // React 개발 서버의 주소
+    @GetMapping("/id")
+    public ResponseEntity<User>getUserById(@RequestParam("id") String id) {
+        System.out.println("!!!API발동!!!");
+        User user = userRepository.findByUserId(id).orElse(null);
+        if(user == null) {
+            return ResponseEntity.notFound().build();
+        }
+        System.out.println("AAA"+user.getUserno());
+        return ResponseEntity.ok(user);
+    }
+
 }
