@@ -11,6 +11,7 @@ public class CardRequestDTO {
     private String id;
     private String password;
 
+    private String initialDate;
     private int cstatus;
     private String cardpw;
     private int cardtypeno;

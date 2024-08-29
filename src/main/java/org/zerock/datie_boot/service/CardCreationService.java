@@ -12,7 +12,10 @@ import org.zerock.datie_boot.repository.CardRepository;
 import org.zerock.datie_boot.repository.UserRepository;
 
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Optional;
 import java.util.Random;
 
@@ -62,7 +65,24 @@ public class CardCreationService {
 
     @Transactional
     public void createCard(CardRequestDTO userData) {
+        /*이니셜 데이트 설정*/
+        String dateString = userData.getInitialDate();
+        System.out.println(dateString);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Timestamp timestamp = null;
+        try {
+            // 문자열을 Date 객체로 변환
+            Date date = format.parse(dateString);
+            // Date 객체를 Timestamp로 변환
+            timestamp = new Timestamp(date.getTime());
 
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        /*이니셜 데이트 설정*/
+
+
+        /*카드번호 생성*/
         String serialNumber = null;
         while(true){
             String serialNumberTemp = generateCreditCardNumber();
@@ -74,6 +94,8 @@ public class CardCreationService {
             }
 
         }
+        /*카드번호 생성*/
+
         String cvc = generateCVC();
 
         Card card = new Card();
@@ -84,7 +106,7 @@ public class CardCreationService {
         card.setCModdate(new Timestamp(System.currentTimeMillis()));
         card.setCardtypeno(userData.getCardtypeno());
         card.setCvc(Integer.parseInt(cvc));
-
+        card.setInitialDate(timestamp);
 
         // 현재 시간으로부터 5년 후 자정 시간 설정
         Calendar calendar = Calendar.getInstance();
