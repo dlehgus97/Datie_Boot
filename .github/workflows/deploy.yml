@@ -76,4 +76,4 @@ jobs:
               pkill -f ${{ secrets.APP_NAME }}
             fi
             # 애플리케이션 실행
-            java -jar /home/${{ secrets.EC2_USER }}/${{ secrets.APP_NAME }}.jar --server.port=${{ secrets.APP_PORT }} &
+            java -jar /home/${{ secrets.EC2_USER }}/build/libs/${{ secrets.APP_NAME }}.jar --server.port=${{ secrets.APP_PORT }} &
