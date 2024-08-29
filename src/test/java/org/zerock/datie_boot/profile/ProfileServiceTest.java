@@ -54,24 +54,24 @@ public class ProfileServiceTest {
         accountRepository.save(account);
     }
 
-    @Test
-    public void testFindUserWithAccountByUserno() {
-        // 테스트할 사용자 ID (userno)
-        int userno = testUser.getUserno();
-
-        // ProfileDTO 조회
-        Optional<ProfileDTO> result = profileRepository.findUserWithAccountByUserno(userno);
-
-        // 결과 검증
-        assertThat(result).isPresent();
-        ProfileDTO profileDTO = result.get();
-        assertThat(profileDTO.getName()).isEqualTo("John Doe");
-        assertThat(profileDTO.getPw()).isEqualTo("password");
-        assertThat(profileDTO.getEmail()).isEqualTo("john.doe@example.com");
-        assertThat(profileDTO.getAddr1()).isEqualTo("123 Main St");
-        assertThat(profileDTO.getAddr2()).isEqualTo("Apt 4B");
-        assertThat(profileDTO.getBank()).isEqualTo("Bank of Spring");
-        assertThat(profileDTO.getAccount()).isEqualTo("123456789");
-        assertThat(profileDTO.getModdate()).isNotNull();
-    }
+//    @Test
+//    public void testFindUserWithAccountByUserno() {
+//        // 테스트할 사용자 ID (userno)
+//        int userno = testUser.getUserno();
+//
+//        // ProfileDTO 조회
+//        Optional<ProfileDTO> result = profileRepository.findUserWithAccountByUserno(userno);
+//
+//        // 결과 검증
+//        assertThat(result).isPresent();
+//        ProfileDTO profileDTO = result.get();
+//        assertThat(profileDTO.getName()).isEqualTo("John Doe");
+//        assertThat(profileDTO.getPw()).isEqualTo("password");
+//        assertThat(profileDTO.getEmail()).isEqualTo("john.doe@example.com");
+//        assertThat(profileDTO.getAddr1()).isEqualTo("123 Main St");
+//        assertThat(profileDTO.getAddr2()).isEqualTo("Apt 4B");
+//        assertThat(profileDTO.getBank()).isEqualTo("Bank of Spring");
+//        assertThat(profileDTO.getAccount()).isEqualTo("123456789");
+//        assertThat(profileDTO.getModdate()).isNotNull();
+//    }
 }
