@@ -10,16 +10,7 @@ import org.zerock.datie_boot.repository.CompanyRepository;
 @RequestMapping("/api")
 public class CompanyController {
 
-    @Autowired
-    private CompanyRepository companyRepository;
 
-    @CrossOrigin(origins = "http://localhost:3000") // React 개발 서버의 주소
-    @GetMapping("/company")
-    public ResponseEntity<Company> getCompanyById(@RequestParam("companyno") int companyno) {
-        Company company = companyRepository.findById(companyno).orElse(null);
-        if (company == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(company);
-    }
+
+
 }

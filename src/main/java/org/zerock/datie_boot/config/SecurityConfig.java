@@ -86,6 +86,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/check-account").permitAll()
                         .requestMatchers(HttpMethod.POST, "/check-fourdigit").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/api/id").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/api/card").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/admin/list").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/admin/list").permitAll()
                         .requestMatchers(HttpMethod.POST, "/chat/request").permitAll()

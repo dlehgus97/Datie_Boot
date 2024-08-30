@@ -4,9 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zerock.datie_boot.dto.PasswordChangeRequestDTO;
 import org.zerock.datie_boot.entity.Card;
+import org.zerock.datie_boot.entity.User;
 import org.zerock.datie_boot.repository.CardRepository;
+import org.zerock.datie_boot.repository.UserRepository;
 
 import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -14,7 +18,8 @@ public class CardService {
 
     @Autowired
     private CardRepository cardRepository;
-  
+    @Autowired
+    private UserRepository userRepository;
     public Card getCardInfo(int cardno) {
         return cardRepository.findByCardno(cardno);
     }
@@ -77,5 +82,19 @@ public class CardService {
             }
         }
         return false;
+    }
+    public Map<String, String> getNamesByCardUserno(int userno) {
+        Map<String, String> namesMap = new HashMap<>();
+
+        Card card = cardRepository.findByUserno(userno).orElse(null);
+        if (card != null) {
+            Optional<User> user1 = userRepository.findByUserno(card.getUserno());
+            Optional<User> user2 = userRepository.findByUserno(card.getUserno2());
+
+            user1.ifPresent(user -> namesMap.put("userno_name", user.getName()));
+            user2.ifPresent(user -> namesMap.put("userno2_name", user.getName()));
+        }
+
+        return namesMap;
     }
 }

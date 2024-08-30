@@ -4,17 +4,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.zerock.datie_boot.entity.Card;
+import org.zerock.datie_boot.entity.Company;
 import org.zerock.datie_boot.entity.PaymentRecord;
+import org.zerock.datie_boot.entity.User;
+import org.zerock.datie_boot.repository.CardRepository;
+import org.zerock.datie_boot.repository.CompanyRepository;
+import org.zerock.datie_boot.repository.UserRepository;
+import org.zerock.datie_boot.service.CardService;
 import org.zerock.datie_boot.service.PaymentRecordService;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:3000")
 public class PayController {
-
+    @Autowired
+    private CompanyRepository companyRepository;
     @Autowired
     private PaymentRecordService paymentRecordService;
-
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private CardRepository cardRepository;
+    @Autowired
+    private CardService cardService;
     @PostMapping("/pay/PayInfo")
     public PaymentRecord payInfo(@RequestBody PaymentRecord payEntity) {
         return paymentRecordService.showInfo(payEntity);
@@ -37,4 +52,35 @@ public class PayController {
         }
     }
 
+    //결제info에서
+    @GetMapping("/company")
+    public ResponseEntity<Company> getCompanyById(@RequestParam("companyno") int companyno) {
+        Company company = companyRepository.findById(companyno).orElse(null);
+        if (company == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(company);
+    }
+    //결제info에서
+    @GetMapping("/id")
+    public ResponseEntity<User>getUserById(@RequestParam("id") String id) {
+        System.out.println("!!!API발동!!!");
+        User user = userRepository.findByUserId(id).orElse(null);
+        if(user == null) {
+            return ResponseEntity.notFound().build();
+        }
+        System.out.println("AAA"+user.getUserno());
+        return ResponseEntity.ok(user);
+    }
+
+    //결제info에서
+    @GetMapping("/card")
+    public ResponseEntity<Map<String, String>> getCardUserNames(@RequestParam("userno") int userno) {
+        Map<String, String> names = cardService.getNamesByCardUserno(userno);
+        System.out.println("CCC"+names);
+        if (names.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(names);
+    }
 }
