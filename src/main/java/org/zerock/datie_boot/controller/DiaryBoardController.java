@@ -17,7 +17,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-@CrossOrigin(origins = {"http://localhost:3000/","http://localhost/"})
+@CrossOrigin(origins = {"http://localhost:3000", "http://ec2-13-53-91-123.eu-north-1.compute.amazonaws.com", "http://13.53.91.123"})
 @RestController
 @RequestMapping("/api/diaryboard")
 public class DiaryBoardController {
