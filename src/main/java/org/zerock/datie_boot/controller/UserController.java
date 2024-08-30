@@ -173,16 +173,6 @@ public class UserController {
 
     }
 
-    @CrossOrigin(origins = "http://localhost:3000") // React 개발 서버의 주소
-    @GetMapping("/id")
-    public ResponseEntity<User>getUserById(@RequestParam("id") String id) {
-        System.out.println("!!!API발동!!!");
-        User user = userRepository.findByUserId(id).orElse(null);
-        if(user == null) {
-            return ResponseEntity.notFound().build();
-        }
-        System.out.println("AAA"+user.getUserno());
-        return ResponseEntity.ok(user);
-    }
+
 
 }
