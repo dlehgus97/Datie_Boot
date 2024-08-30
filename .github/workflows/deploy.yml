@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main  # 배포할 브랜치
+  pull_request:
+    branches:
+      - main  # merge request가 발생할 브랜치
 
 jobs:
   deploy:
