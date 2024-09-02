@@ -56,8 +56,9 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
         String userId = customUserDetails.getId();
         String userno = String.valueOf(customUserDetails.getUserno());
+        String userrole = String.valueOf(customUserDetails.getAuthorities());
 
-        String token = jwtUtil.createJwt(userId, userno, 60 * 60 * 10L);
+        String token = jwtUtil.createJwt(userId, userno, 60 * 60 * 10L, userrole);
         response.setHeader("Authorization", "Bearer " + token);
         response.setHeader("Access-Control-Expose-Headers", "Authorization");
         response.setHeader("Access-Control-Allow-Origin", "*");

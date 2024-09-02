@@ -28,10 +28,11 @@ public class JWTUtil {
     }
 
     // userno를 매개변수로 추가
-    public String createJwt(String id, String userno, Long expiredMs) {
+    public String createJwt(String id, String userno, Long expiredMs, String role) {
         return Jwts.builder()
                 .claim("id", id)
                 .claim("userno", userno) // userno를 매개변수로 사용
+                .claim("role", role)
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + expiredMs))
                 .signWith(secretKey)

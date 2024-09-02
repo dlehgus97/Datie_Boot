@@ -28,6 +28,7 @@ public class User {
     private String profileReal;
     private String profileOrg;
     private int status;
+    private String role;
   
     @Column(columnDefinition = "TIMESTAMP")
     private LocalDateTime moddate; //수정날짜

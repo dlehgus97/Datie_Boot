@@ -88,7 +88,7 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
         }
 
-        String token = jwtUtil.createJwt(user.getId(), String.valueOf(user.getUserno()), 3600000L);
+        String token = jwtUtil.createJwt(user.getId(), String.valueOf(user.getUserno()), 3600000L, user.getRole());
         response.put("success", true);
         response.put("token", token);
         return ResponseEntity.ok(response);
