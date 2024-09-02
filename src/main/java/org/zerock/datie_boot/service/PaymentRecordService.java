@@ -2,6 +2,8 @@ package org.zerock.datie_boot.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.zerock.datie_boot.entity.Account;
@@ -18,6 +20,7 @@ import org.zerock.datie_boot.repository.PaymentRecordRepository;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PaymentRecordService {
@@ -46,8 +49,23 @@ public class PaymentRecordService {
         return paymentRecordRepository.save(paymentrecord);
     }
 
-    public List<PaymentRecord> getPaymentRecordsByCardno(int cardno) {
-        return paymentRecordRepository.findByCardno(cardno);
+    public Page<PaymentRecord> getPaymentRecordsByCardno(int cardno, Pageable pageable) {
+        return paymentRecordRepository.findByCardno(cardno, pageable);
+    }
+
+    public List<PaymentRecord> getAllPaymentRecordsByCardno(int cardno) {
+        return paymentRecordRepository.findAllByCardno(cardno);
+    }
+
+    public PaymentRecord updateCategory(Long payno, String newCategory) {
+        Optional<PaymentRecord> optionalRecord = paymentRecordRepository.findById(payno);
+        if (optionalRecord.isPresent()) {
+            PaymentRecord paymentRecord = optionalRecord.get();
+            paymentRecord.setCategory(newCategory);
+            return paymentRecordRepository.save(paymentRecord);
+        } else {
+            throw new RuntimeException("PaymentRecord not found with id: " + payno);
+        }
     }
 
     public String processPayment(PaymentRecord paymentRecord) {
