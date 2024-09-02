@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@RequestMapping("/api")
+//@RequestMapping("/api")
 @RestController
 @CrossOrigin(origins = {"http://localhost:3000", "http://ec2-13-53-91-123.eu-north-1.compute.amazonaws.com", "http://13.53.91.123"})
 public class UserController {
@@ -51,6 +51,7 @@ public class UserController {
         user.setName(signUpRequest.getName());
 //        user.setIdnumber(signUpRequest.getIdnumber());
         user.setHp(String.valueOf(signUpRequest.getHp()));
+        user.setRole("user");
         user.setSex(signUpRequest.getSex());
         user.setAge(signUpRequest.getAge());
         user.setBank(signUpRequest.getBank());

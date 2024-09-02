@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.zerock.datie_boot.dto.CustomUserDetails;
@@ -16,6 +17,7 @@ import org.zerock.datie_boot.dto.UserLoginRequest;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.Iterator;
 
 public class LoginFilter extends UsernamePasswordAuthenticationFilter {
     private AuthenticationManager authenticationManager;
@@ -56,7 +58,10 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
         String userId = customUserDetails.getId();
         String userno = String.valueOf(customUserDetails.getUserno());
-        String userrole = String.valueOf(customUserDetails.getAuthorities());
+
+
+        Iterator<GrantedAuthority> iterator = (Iterator<GrantedAuthority>) customUserDetails.getAuthorities().iterator();
+        String userrole = String.valueOf(iterator.next().getAuthority());
 
         String token = jwtUtil.createJwt(userId, userno, 60 * 60 * 10L, userrole);
         response.setHeader("Authorization", "Bearer " + token);
