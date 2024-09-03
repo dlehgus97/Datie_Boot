@@ -7,6 +7,7 @@ import lombok.ToString;
 import org.hibernate.annotations.CurrentTimestamp;
 
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class DiaryBoard {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int boardno;
 
-	private int diaryno;
+	private Date diarydate;
 
 	private String title;
 	private String content;
