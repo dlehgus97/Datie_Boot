@@ -18,6 +18,8 @@ import org.zerock.datie_boot.repository.DiaryRepository;
 import org.zerock.datie_boot.repository.PaymentRecordRepository;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -66,6 +68,21 @@ public class PaymentRecordService {
         } else {
             throw new RuntimeException("PaymentRecord not found with id: " + payno);
         }
+    }
+
+    public List<PaymentRecord> getPaymentRecordsByMonth(int cardno, int year, int month) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month - 1); // 월은 0부터 시작하므로 -1 해줍니다.
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        Timestamp startDate = new Timestamp(calendar.getTimeInMillis());
+
+        calendar.add(Calendar.MONTH, 1);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        calendar.add(Calendar.DAY_OF_MONTH, -1);
+        Timestamp endDate = new Timestamp(calendar.getTimeInMillis());
+
+        return paymentRecordRepository.findByCardnoAndConfirmdateBetween(cardno, startDate, endDate);
     }
 
     public String processPayment(PaymentRecord paymentRecord) {

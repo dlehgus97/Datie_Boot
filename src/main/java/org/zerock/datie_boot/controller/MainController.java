@@ -60,6 +60,15 @@ public class MainController {
         return paymentRecordService.getAllPaymentRecordsByCardno(cardno);
     }
 
+    @PostMapping("/card/{cardno}/payment-records-month")
+    public List<PaymentRecord> getPaymentRecordsMonth(
+            @PathVariable int cardno,
+            @RequestParam int year,
+            @RequestParam int month) {
+
+        return paymentRecordService.getPaymentRecordsByMonth(cardno, year, month);
+    }
+
     @PostMapping("/card/{cardno}")
     public Card getCardInfo(@PathVariable int cardno) {
         return cardService.getCardInfo(cardno);
@@ -78,9 +87,9 @@ public class MainController {
         // 2. 프롬프트 생성
         StringBuilder promptBuilder = new StringBuilder();
         promptBuilder.append("카테고리, 금액, 구매내역이름을 제공할거야 이 내용을 바탕으로 액티비티나 할만한 것들을 추천해줘\n" +
-                "1. 추천은 카테고리 기반으로 적절하게 추천할 것 (예를 들어 외식이 많으면 활동적인 액티비티를 추천)\n" +
+                "1. 추천은 카테고리 기반으로 적절하게 추천할 것 (예를 들어 외식이 많으면 활동적인 액티비티나 외식을 추천)\n" +
                 "2. 금액을 생각하여 비슷한 금액대의 활동을 추천할 것\n" +
-                "3. location은 구매한 곳의 지점이름이 들어가므로 구글에 검색하여 적절한 위치를 산출해서 근처로 추천할 것\n" +
+                "3. location은 구매한 곳의 지점 이름, 카카오맵에 검색하여 위치를 산출해서 근처로 추천할 것\n" +
                 "4. 대답은 주소에 상호명까지만 붙여서 단답으로 대답해줄 것\n" +
                 "5. 추천은 세가지를 해줄 것\n" +
                 "6. json 형태로 대답할 것\n" +
@@ -90,7 +99,7 @@ public class MainController {
                 "Basis: 외식\n" +
                 "8. 내부에 불필요한 설명 뺄 것\n" +
                 "9. 어떤 카테고리를 기준으로 산출했는지 추가할 것(최근 10개중 가장 많은것이 외식이면 Basis: 외식)\n" +
-                "10. 현재 존재하는, 가능한 활동으로 추천할 것\n" +
+                "10. 추천할 장소나 활동이 실제로 존재하며, Google Maps 또는 Kakao Maps에서 검색 결과로 나타나는지 확인할 것.\n" +
                 "11. 연인들이 하기 적절한 것으로 추천할 것\n");
 
         for (PaymentRecord record : paymentRecords) {
