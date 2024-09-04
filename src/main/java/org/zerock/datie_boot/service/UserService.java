@@ -10,9 +10,8 @@ import org.zerock.datie_boot.repository.AccountRepository;
 import org.zerock.datie_boot.repository.AccountTranRepository;
 import org.zerock.datie_boot.repository.UserRepository;
 
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class UserService {
@@ -73,8 +72,15 @@ public class UserService {
             AccountTran accountTran = new AccountTran();
             accountTran.setAccountno(acno.get().getAccountno());
             accountTran.setAmount(1); // 필요한 경우 값을 설정
-            accountTran.setName("데이티1234"); // 필요한 경우 외부에서 받아올 수 있습니다.
-//            accountTran.setConfirmdate(new Timestamp()); // 현재 날짜로 설정
+
+            // 4자리 난수 생성
+            Random random = new Random();
+            int randomNumber = 1000 + random.nextInt(9000); // 1000 ~ 9999 사이의 난수 생성
+
+            // "데이티" + 4자리 난수로 이름 설정
+            accountTran.setName("데이티" + randomNumber);
+
+            // accountTran.setConfirmdate(new Timestamp()); // 현재 날짜로 설정
 
             accountTranRepository.save(accountTran);
         }
@@ -84,5 +90,9 @@ public class UserService {
 //        public Optional<User> getUserByUserno (int userno){
 //            return userRepository.findByUserno(userno);
 //        }
+    }
+
+    public Optional<Account> getAccountno(String account) {
+        return accountRepository.findAccountnoByAccount(account);
     }
 }

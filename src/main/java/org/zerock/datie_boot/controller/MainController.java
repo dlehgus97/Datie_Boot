@@ -99,7 +99,7 @@ public class MainController {
                 "Basis: 외식\n" +
                 "8. 내부에 불필요한 설명 뺄 것\n" +
                 "9. 어떤 카테고리를 기준으로 산출했는지 추가할 것(최근 10개중 가장 많은것이 외식이면 Basis: 외식)\n" +
-                "10. 추천할 장소나 활동이 실제로 존재하며, Google Maps 또는 Kakao Maps에서 검색 결과로 나타나는지 확인할 것.\n" +
+                "10. 추천할 장소나 활동이 실제로 존재하는지 확인하기 어려우니 확인이 필요하지 않을 정도의 활동으로 추천할 것.\n" +
                 "11. 연인들이 하기 적절한 것으로 추천할 것\n");
 
         for (PaymentRecord record : paymentRecords) {

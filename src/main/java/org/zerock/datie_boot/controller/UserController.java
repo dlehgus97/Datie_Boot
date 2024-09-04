@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
 //@RequestMapping("/api")
 @RestController
 @CrossOrigin(origins = {"http://localhost:3000", "http://ec2-13-53-91-123.eu-north-1.compute.amazonaws.com", "http://13.53.91.123"})
@@ -65,6 +66,13 @@ public class UserController {
             response.put("success", true);
             response.put("message", "회원가입이 완료되었습니다.");
             response.put("user", savedUser);
+            //계좌에 userno 입력
+            Optional<Account> accountOptional = accountRepository.findByAccountno(user.getAccountno());
+            if (accountOptional.isPresent()) {
+                Account account = accountOptional.get();
+                account.setUserno(user.getUserno());
+                accountRepository.save(account);
+            }
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             response.put("success", false);
@@ -131,6 +139,12 @@ public class UserController {
 
         Map<String, Object> response = new HashMap<>();
         response.put("exists", exists);
+        if (exists) {
+            System.out.println("계좌 세팅");
+            Optional<Account> accountInfo = userService.getAccountno(account);
+            response.put("accountno", accountInfo.get().getAccountno());
+            System.out.println(accountInfo.get().getAccount());
+        }
 
         return ResponseEntity.ok(response);
     }
@@ -163,7 +177,7 @@ public class UserController {
         }
 
         // name의 뒷 4자리 가져오기
-        String lastFourDigits = accountTrans.get(0).getName().substring(accountTrans.get(0).getName().length() - 4);
+        String lastFourDigits = accountTrans.get(accountTrans.size() - 1).getName().substring(accountTrans.get(accountTrans.size() - 1).getName().length() - 4);
         System.out.println("DB에서 가져온 마지막 4자리: " + lastFourDigits); // 로그 추가
 
         // 인증번호 비교
