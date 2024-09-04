@@ -3,11 +3,10 @@ package org.zerock.datie_boot.repository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import org.springframework.data.jpa.repository.Query;
 import org.zerock.datie_boot.entity.PaymentRecord;
-
 import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -100,4 +99,6 @@ public interface PaymentRecordRepository extends JpaRepository
                     "AND YEAR(pr.confirmdate) = YEAR(CURRENT_DATE)"
     )
     List<Object[]> adminGetTime();
+    List<PaymentRecord> findByCardnoAndConfirmdateBetween(int cardno, Timestamp startDate, Timestamp endDate);
+
 }
