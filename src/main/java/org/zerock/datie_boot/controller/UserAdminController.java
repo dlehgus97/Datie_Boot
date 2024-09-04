@@ -7,6 +7,7 @@ import org.zerock.datie_boot.dto.UserAdminDTO;
 import org.zerock.datie_boot.service.UserAdminService;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -15,6 +16,39 @@ public class UserAdminController {
 
     @Autowired
     private UserAdminService userAdminService;
+
+
+    @GetMapping("/admin/time")
+    public List<String> adminGetTime(UserAdminDTO param) {
+        return userAdminService.adminGetTime();
+    }
+
+
+    @GetMapping("/admin/age")
+    public List<Map<String,String>> adminGetAge(UserAdminDTO param) {
+        return userAdminService.adminGetAge();
+    }
+
+
+
+    @GetMapping("/admin/category")
+    public List<Map<String,String>> adminGetCategory(UserAdminDTO param) {
+        return userAdminService.adminGetCategory();
+    }
+
+
+
+
+
+
+    @GetMapping("/admin/today")
+    public String adminGetToday(UserAdminDTO param) {
+        return userAdminService.adminGetToday();
+    }
+
+
+
+
 
     @GetMapping("/admin/list")
     public List<UserAdminDTO> adminGetList(UserAdminDTO param) {
