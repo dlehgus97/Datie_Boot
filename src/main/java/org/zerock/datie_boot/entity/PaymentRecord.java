@@ -36,4 +36,7 @@ public class PaymentRecord {
     private Company company;
 
     private String category;
+
+
+
 }

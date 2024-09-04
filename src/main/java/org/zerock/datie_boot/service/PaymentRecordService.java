@@ -122,6 +122,8 @@ public class PaymentRecordService {
                 accountRepository.save(account);
                 accountRepository.save(account2);
 
+                //체크
+
                 //gpt 카테고리 산출
                 System.out.println("카테고리 불러오기");
                 String prompt = "소비내역의 내용이야. 이 내용을 구글에 검색해 보고 내가 제시한 카테고리중 어디에 포함될지 유추한 뒤에 괄호를 뺀 카테고리만 말해." +
