@@ -8,11 +8,15 @@ import org.zerock.datie_boot.dto.UserAdminDTO;
 import org.zerock.datie_boot.entity.Card;
 import org.zerock.datie_boot.entity.User;
 import org.zerock.datie_boot.repository.CardAdminRepository;
+import org.zerock.datie_boot.repository.PaymentRecordRepository;
 import org.zerock.datie_boot.repository.UserAdminRepository;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Service
 public class UserAdminService {
@@ -22,6 +26,9 @@ public class UserAdminService {
 
     @Autowired
     CardAdminRepository cardAdminRepository;
+
+    @Autowired
+    PaymentRecordRepository paymentRecordRepository;
 
     public List<UserAdminDTO> adminGetList(UserAdminDTO param) {
         List<Object[]> list;
@@ -89,5 +96,81 @@ public class UserAdminService {
         String maxDate = cardAdminRepository.getMaxDate(id);
         Timestamp timestamp = Timestamp.valueOf(maxDate);
         cardAdminRepository.holdByUserId(id , timestamp);
+    }
+
+    public String adminGetToday() {
+        LocalDate today = LocalDate.now();
+        Date date = java.sql.Date.valueOf(today);
+        return paymentRecordRepository.adminGetToday(date);
+    }
+
+    public List<Map<String, String>> adminGetCategory() {
+        List<Object[]> results = paymentRecordRepository.adminGetCategory();
+        return IntStream.range(0, results.size())
+                .mapToObj(i -> {
+                    Object[] result = results.get(i);
+                    Map<String, String> map = new HashMap<>();
+                    map.put("id" , i+"" );
+                    map.put("label", (String) result[0]); // 카테고리 이름
+                    map.put("value", String.valueOf(result[1])); // 결제 내역 수
+                    return map;
+                })
+                .collect(Collectors.toList());
+    }
+
+    public List<Map<String, String>> adminGetAge() {
+        List<Object[]> results = paymentRecordRepository.adminGetAge();
+        List<Map<String, String>> ageDataList = new ArrayList<>();
+
+        for (Object[] result : results) {
+            Map<String, String> ageData = new HashMap<>();
+            ageData.put("ageGroup", (String) result[0]); // ageGroup
+            ageData.put("외식", String.valueOf(result[1])); // 외식
+            ageData.put("미용패션", String.valueOf(result[2])); // 미용/패션
+            ageData.put("문화여가", String.valueOf(result[3])); // 문화/여가
+            ageData.put("식료품", String.valueOf(result[4])); // 식료품
+            ageData.put("기타", String.valueOf(result[5])); // 기타
+
+            ageDataList.add(ageData);
+        }
+
+        return ageDataList;
+    }
+
+    public List<String> adminGetTime() {
+        List<Object[]> results = paymentRecordRepository.adminGetTime();
+        List<String> timeDataList = new ArrayList<>();
+        if(results.size() == 1){
+            Object[] objects = results.get(0);
+            timeDataList.add(String.valueOf(objects[0]));
+            timeDataList.add(String.valueOf(objects[1]));
+            timeDataList.add(String.valueOf(objects[2]));
+            timeDataList.add(String.valueOf(objects[3]));
+            timeDataList.add(String.valueOf(objects[4]));
+            timeDataList.add(String.valueOf(objects[5]));
+            timeDataList.add(String.valueOf(objects[6]));
+            timeDataList.add(String.valueOf(objects[7]));
+            timeDataList.add(String.valueOf(objects[8]));
+            timeDataList.add(String.valueOf(objects[9]));
+            timeDataList.add(String.valueOf(objects[10]));
+            timeDataList.add(String.valueOf(objects[11]));
+            timeDataList.add(String.valueOf(objects[12]));
+            timeDataList.add(String.valueOf(objects[13]));
+            timeDataList.add(String.valueOf(objects[14]));
+            timeDataList.add(String.valueOf(objects[15]));
+            timeDataList.add(String.valueOf(objects[16]));
+            timeDataList.add(String.valueOf(objects[17]));
+            timeDataList.add(String.valueOf(objects[18]));
+            timeDataList.add(String.valueOf(objects[19]));
+            timeDataList.add(String.valueOf(objects[20]));
+            timeDataList.add(String.valueOf(objects[21]));
+            timeDataList.add(String.valueOf(objects[22]));
+            timeDataList.add(String.valueOf(objects[23]));
+
+            return timeDataList;
+        } else {
+            return null;
+        }
+
     }
 }
