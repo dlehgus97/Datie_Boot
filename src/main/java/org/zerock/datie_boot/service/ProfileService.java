@@ -1,6 +1,7 @@
 package org.zerock.datie_boot.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,6 +22,9 @@ import java.util.UUID;
 
 @Service
 public class ProfileService {
+
+    @Value("${upload.dir}")
+    private String dir;
 
     @Autowired
     private ProfileRepository profileRepository;
@@ -65,13 +69,13 @@ public class ProfileService {
         userRepository.save(user);
     }
 
-    private static final String UPLOAD_DIR = "D:/shpj2/datie_boot/src/main/resources/static/upload/profile";
+
 
     @Transactional
     public void saveProfile(int userno, MultipartFile image) throws IOException {
         String originalFilename = image.getOriginalFilename();
         String uniqueFilename = UUID.randomUUID().toString() + "_" + originalFilename;
-        Path filePath = Paths.get(UPLOAD_DIR, uniqueFilename);
+        Path filePath = Paths.get(dir, uniqueFilename);
         System.out.println("pro: " + uniqueFilename);
 
         // 파일을 로컬 디렉토리에 저장

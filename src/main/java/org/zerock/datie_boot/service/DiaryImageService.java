@@ -20,7 +20,10 @@ import java.util.stream.Collectors;
 @Service
 public class DiaryImageService {
 
-    private static final String UPLOAD_DIR = "D:/shpj2/datie_boot/src/main/resources/static/upload/diary";  // 변경된 경로
+    @Value("${upload.dir}")
+    private String dir;
+
+
 
     @Autowired
     private DiaryImageRepository diaryImageRepository;
@@ -29,7 +32,7 @@ public class DiaryImageService {
         for (MultipartFile image : images) {
             String originalFilename = image.getOriginalFilename();
             String uniqueFilename = UUID.randomUUID().toString() + "_" + originalFilename;
-            Path filePath = Paths.get(UPLOAD_DIR, uniqueFilename);
+            Path filePath = Paths.get(dir, uniqueFilename);
 
             // 파일을 로컬 디렉토리에 저장
             Files.createDirectories(filePath.getParent());

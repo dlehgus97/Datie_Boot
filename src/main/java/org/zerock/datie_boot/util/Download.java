@@ -3,6 +3,7 @@ package org.zerock.datie_boot.util;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -14,16 +15,18 @@ import java.io.OutputStream;
 @Controller
 public class Download {
 
+	@Value("${upload.dir}")
+	private String dir;
+
 	@GetMapping("/download")
 	public void download(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		response.setContentType("text/html;charset=utf-8");
-		String file_repo = "D:/upload"; // 배포시 외부 경로 설정
 		String filename_org = request.getParameter("filename_org");
 		String filename_real = request.getParameter("filename_real");
 		// 한글처리
 		filename_org = new String(filename_org.getBytes("UTF-8"),"ISO-8859-1");
 		OutputStream out = response.getOutputStream();
-		String downFile = file_repo+"/"+filename_real; 
+		String downFile = dir+"/"+filename_real;
 		File f = new File(downFile);
 		
 		response.setHeader("Cache-Control", "no-cache");

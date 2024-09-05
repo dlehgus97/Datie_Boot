@@ -1,6 +1,7 @@
 package org.zerock.datie_boot.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
@@ -32,6 +33,9 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/diary")
 public class DiaryController {
+
+    @Value("${app.url}")
+    private String url;
 
     @Autowired
     private DiaryService diaryService;
@@ -123,7 +127,7 @@ public class DiaryController {
 
         // URL 리스트 반환
         List<String> imageUrls = images.stream()
-                .map(image -> "http://localhost:8090/api/diary/image/" + image.getImageName())
+                .map(image -> url + "/api/diary/image/" + image.getImageName())
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok(imageUrls);

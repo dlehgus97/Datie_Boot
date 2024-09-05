@@ -1,6 +1,7 @@
 package org.zerock.datie_boot.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.zerock.datie_boot.dto.DiaryDTO;
@@ -18,6 +19,9 @@ import java.util.Optional;
 
 @Service
 public class DiaryService {
+
+    @Value("${upload.dir}")
+    private String dir;
 
     @Autowired
     private DiaryRepository diaryRepository;
@@ -48,8 +52,7 @@ public class DiaryService {
                 for (MultipartFile image : images) {
                     if (!image.isEmpty()) {
                         // 파일 저장 경로 설정
-                        String uploadDir = "D:/shpj2/upload/";
-                        Path uploadPath = Paths.get(uploadDir);
+                        Path uploadPath = Paths.get(dir);
 
                         // 디렉토리가 없을 경우 생성
                         if (!Files.exists(uploadPath)) {
