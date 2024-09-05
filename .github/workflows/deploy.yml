@@ -50,7 +50,7 @@ jobs:
           echo "openai.api.url=https://api.openai.com/v1/chat/completions" >> src/main/resources/application.properties
           echo "# ???? ??" >> src/main/resources/application.properties
           echo "spring.jwt.secret=${{ secrets.JWT_SECRET }}" >> src/main/resources/application.properties
-      
+          echo "app.url=http://51.21.130.65:8090" >> src/main/resources/application.properties
       - name: Grant execute permission to gradlew
         run: chmod +x ./gradlew  # gradlew에 실행 권한 부여
         
