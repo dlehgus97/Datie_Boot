@@ -43,7 +43,13 @@ public class UserAdminController {
 
     @GetMapping("/admin/today")
     public String adminGetToday(UserAdminDTO param) {
-        return userAdminService.adminGetToday();
+        String result = userAdminService.adminGetToday();
+        if(result == null){
+            return "0";
+        }else {
+            return result;
+        }
+
     }
 
 
