@@ -136,7 +136,7 @@ public class DiaryController {
     @GetMapping("image/{imageName}")
     public ResponseEntity<Resource> getDiaryImage(@PathVariable String imageName) {
         try {
-            Path filePath = Paths.get("src/main/resources/static/upload/diary/" + imageName);
+            Path filePath = Paths.get("/home/ubuntu/images/" + imageName);
             Resource resource = new UrlResource(filePath.toUri());
             System.out.println(resource.getFilename());
 
