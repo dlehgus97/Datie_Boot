@@ -73,7 +73,7 @@ public class ProfileController {
 
             // 프로필 이미지 파일 경로 생성
             String imageName = user.getProfileReal();
-            Path filePath = Paths.get("src/main/resources/static/upload/profile/" + imageName);
+            Path filePath = Paths.get("/home/ubuntu/images/" + imageName);
 
             try {
                 Resource resource = new UrlResource(filePath.toUri());
