@@ -20,8 +20,7 @@ public interface PaymentRecordRepository extends JpaRepository
             "SELECT COUNT(c.userno) " +
                     "FROM PaymentRecord pr " +
                     "JOIN pr.card c " +
-                    "WHERE DATE(pr.confirmdate) = :today " +
-                    "GROUP BY c.userno"
+                    "WHERE DATE(pr.confirmdate) = :today "
     )
     String adminGetToday(Date today);
 
