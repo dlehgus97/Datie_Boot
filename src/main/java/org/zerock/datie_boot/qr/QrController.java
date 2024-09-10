@@ -15,7 +15,7 @@ import java.util.UUID;
 @RestController
 public class QrController {
 
-    private final String address ="http://ec2-13-53-91-123.eu-north-1.compute.amazonaws.com/";
+    private final String address ="ec2-13-124-13-145.ap-northeast-2.compute.amazonaws.com/";
     private final QrServiceImple qrServiceImple;
     private final PaymentKeyRepository paymentKeyRepository;
 
