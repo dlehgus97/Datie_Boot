@@ -13,7 +13,7 @@
 
 | 팀장 | 팀원 | 팀원 | 팀원 | 팀원 | 팀원 |
 |:-:|:-:|:-:|:-:|:-:|:-:|
-| <img src="https://avatars.githubusercontent.com/u/107400911?v=4" width="150" height="150"/> <br> [양재혁](https://github.com/Akkapda) | <img src="https://avatars.githubusercontent.com/u/76528931?v=4" width="150" height="150"/> <br> [이진우](https://github.com/dlehgus97) | <img src="https://avatars.githubusercontent.com/u/39136303?v=4" width="150" height="150"/> <br> [최동규](https://github.com/dongdongchoi) | <img src="https://avatars.githubusercontent.com/u/128129450?v=4" width="150" height="150"/> <br> [김강온](https://github.com/kimgo816) | <img src="https://avatars.githubusercontent.com/u/47552691?v=4" width="150" height="150"/> <br> [서현오](https://github.com/ohhyeonn) | <img src="https://avatars.githubusercontent.com/u/142489569?v=4" width="150" height="150"/> <br> [전한주](https://github.com/hanjucoding) |
+| <img src="https://avatars.githubusercontent.com/u/107400911?v=4" width="150" height="150"/> <br> [양재혁](https://github.com/Akkapda) | <img src="https://avatars.githubusercontent.com/u/76528931?v=4" width="150" height="150"/> <br> [이진우](https://github.com/dlehgus97) | <img src="https://avatars.githubusercontent.com/u/39136303?v=4" width="150" height="150"/> <br> [최동규](https://github.com/dongdongchoi) | <img src="https://avatars.githubusercontent.com/u/128129450?v=4" width="150" height="150"/> <br> [김강온](https://github.com/kimgo816) | <img                                                      src="https://avatars.githubusercontent.com/u/79631853?v=4" width="150" height="150"/> <br> [서현오](https://github.com/ohhyeonn) | <img src="https://avatars.githubusercontent.com/u/142489569?v=4" width="150" height="150"/> <br> [전한주](https://github.com/hanjucoding) |
 
 
 
